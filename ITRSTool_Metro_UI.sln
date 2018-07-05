@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITRSTool_Metro_UI", "ITRSTool_Metro_UI\ITRSTool_Metro_UI.csproj", "{BE03887B-F971-47F0-A3E0-73014C757498}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE03887B-F971-47F0-A3E0-73014C757498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE03887B-F971-47F0-A3E0-73014C757498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE03887B-F971-47F0-A3E0-73014C757498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE03887B-F971-47F0-A3E0-73014C757498}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EFB81E0-ADF6-452C-87FE-0A34D043DE7B}
+	EndGlobalSection
+EndGlobal
