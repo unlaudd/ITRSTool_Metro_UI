@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace ITRSTool_Metro_UI
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : MetroFramework.Forms.MetroForm
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
