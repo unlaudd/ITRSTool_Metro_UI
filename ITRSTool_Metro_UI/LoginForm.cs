@@ -19,7 +19,15 @@ namespace ITRSTool_Metro_UI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            // Действие - Закрытие приложения на кнопку Отмена
             this.Close();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            MainForm ss = new MainForm();
+            ss.Show();
+            this.Hide();
         }
     }
 }
