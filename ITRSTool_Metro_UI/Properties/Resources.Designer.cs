@@ -63,9 +63,9 @@ namespace ITRSTool_Metro_UI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dandy {
+        internal static System.Drawing.Bitmap administrator {
             get {
-                object obj = ResourceManager.GetObject("dandy", resourceCulture);
+                object obj = ResourceManager.GetObject("administrator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace ITRSTool_Metro_UI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap friends {
+        internal static System.Drawing.Bitmap administrator_small {
             get {
-                object obj = ResourceManager.GetObject("friends", resourceCulture);
+                object obj = ResourceManager.GetObject("administrator_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,29 @@ namespace ITRSTool_Metro_UI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap w128h1281372334742chat {
+        internal static System.Drawing.Bitmap cloud {
             get {
-                object obj = ResourceManager.GetObject("w128h1281372334742chat", resourceCulture);
+                object obj = ResourceManager.GetObject("cloud", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap diagram40 {
+            get {
+                object obj = ResourceManager.GetObject("diagram40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user {
+            get {
+                object obj = ResourceManager.GetObject("user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -16,5 +16,10 @@ namespace ITRSTool_Metro_UI
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

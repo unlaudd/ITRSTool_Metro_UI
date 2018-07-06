@@ -25,14 +25,11 @@ namespace ITRSTool_Metro_UI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Прячем форму логина
+            // Закрываем форму логин, открываем основную форму
             Hide();
-            // Передаем управление основной форме
             MainForm ss = new MainForm();
             ss.ShowDialog();
-            // Закрываем форму логина
             this.Close();
-
         }
     }
 }

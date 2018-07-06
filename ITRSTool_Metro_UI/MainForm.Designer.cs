@@ -37,9 +37,9 @@
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLoginName = new MetroFramework.Controls.MetroLabel();
+            this.lblGroup = new MetroFramework.Controls.MetroLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblGroup = new MetroFramework.Controls.MetroLabel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -106,56 +106,56 @@
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Location = new System.Drawing.Point(309, 38);
+            this.lblLoginName.Location = new System.Drawing.Point(329, 35);
             this.lblLoginName.Name = "lblLoginName";
             this.lblLoginName.Size = new System.Drawing.Size(83, 19);
             this.lblLoginName.TabIndex = 2;
             this.lblLoginName.Text = "Login_Name";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::ITRSTool_Metro_UI.Properties.Resources.dandy;
-            this.pictureBox2.Location = new System.Drawing.Point(271, 25);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ITRSTool_Metro_UI.Properties.Resources.friends;
-            this.pictureBox1.Location = new System.Drawing.Point(458, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblGroup
             // 
             this.lblGroup.AutoSize = true;
-            this.lblGroup.Location = new System.Drawing.Point(496, 38);
+            this.lblGroup.Location = new System.Drawing.Point(496, 35);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(78, 19);
             this.lblGroup.TabIndex = 4;
             this.lblGroup.Text = "User_Group";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ITRSTool_Metro_UI.Properties.Resources.administrator_small;
+            this.pictureBox2.Location = new System.Drawing.Point(307, 38);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ITRSTool_Metro_UI.Properties.Resources.cloud;
+            this.pictureBox1.Location = new System.Drawing.Point(475, 38);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(775, 450);
-            this.Controls.Add(this.lblGroup);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.lblGroup);
             this.Controls.Add(this.lblLoginName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Resizable = false;
             this.Text = "Основная форма";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -177,7 +177,7 @@
         private System.Windows.Forms.ToolStripMenuItem админкаToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private MetroFramework.Controls.MetroLabel lblLoginName;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private MetroFramework.Controls.MetroLabel lblGroup;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
