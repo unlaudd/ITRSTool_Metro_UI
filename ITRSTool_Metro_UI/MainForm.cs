@@ -12,14 +12,17 @@ namespace ITRSTool_Metro_UI
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        public MainForm()
+        public MainForm(string UserInfo, string GroupInfo)
         {
             InitializeComponent();
+            // Выводим имя пользователя и группу на главной форме.
+            lblLoginName.Text = UserInfo;
+            lblGroup.Text = GroupInfo;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-           
+            
         }
     }
 }

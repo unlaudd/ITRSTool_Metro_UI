@@ -106,7 +106,7 @@
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Location = new System.Drawing.Point(329, 35);
+            this.lblLoginName.Location = new System.Drawing.Point(232, 32);
             this.lblLoginName.Name = "lblLoginName";
             this.lblLoginName.Size = new System.Drawing.Size(83, 19);
             this.lblLoginName.TabIndex = 2;
@@ -115,7 +115,7 @@
             // lblGroup
             // 
             this.lblGroup.AutoSize = true;
-            this.lblGroup.Location = new System.Drawing.Point(496, 35);
+            this.lblGroup.Location = new System.Drawing.Point(432, 32);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(78, 19);
             this.lblGroup.TabIndex = 4;
@@ -124,7 +124,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ITRSTool_Metro_UI.Properties.Resources.administrator_small;
-            this.pictureBox2.Location = new System.Drawing.Point(307, 38);
+            this.pictureBox2.Location = new System.Drawing.Point(210, 35);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -134,7 +134,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ITRSTool_Metro_UI.Properties.Resources.cloud;
-            this.pictureBox1.Location = new System.Drawing.Point(475, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(411, 36);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(15, 15);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

@@ -29,7 +29,7 @@ namespace ITRSTool_Metro_UI
             //Проверяем на заполнение поле логина. Если пусто, выводим сообщение, ставим фокус в поле.
             if (string.IsNullOrEmpty(txtLogin.Text))
             {
-                MessageBox.Show("Необходимо ввести имя пользователя!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, "Необходимо ввести имя пользователя!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtLogin.Focus();
                 return;
             }
@@ -37,7 +37,7 @@ namespace ITRSTool_Metro_UI
             //Проверяем на заполнение поле логина. Если пусто, выводим сообщение, ставим фокус в поле.
             if (string.IsNullOrEmpty(txtPass.Text))
             {
-                MessageBox.Show("Необходимо ввести пароль!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, "Необходимо ввести пароль!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPass.Focus();
                 return;
             }
@@ -53,32 +53,47 @@ namespace ITRSTool_Metro_UI
                 appconfig.ShowDialog();
                 this.Close();
             }
-            // Открываем файл с настройками коннекта к СУБД
+            // Коннектимся к СУБД, используя класс.
 
-
-
-
-            
-            // Если Запомнить меня валидно
-            if (chkRemember.Checked == true)
+            try
             {
-                try
+                // Проверяем соответствие на сочетание логина/пароля в СУБД. Если 0 - пользователь ввел не верные данные, если 1 - пользователь существует
+                string SqlUserTest = "SELECT COUNT(*) FROM tbl_login where Login = '" + txtLogin.Text + "' and Password = '" + txtPass.Text + "'";
+                int prov = Convert.ToInt32(DB.Sql_Reader(SqlUserTest));
+                
+                
+                if (prov == 1)
                 {
-                    //Создаём или перезаписываем существующий файл
-                    string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
-                    path += "\\Local\\Temp\\last_login.tmp";
-                    FileIO.saveAsOwnTextFormat(path, txtLogin.Text);
+                    if (chkRemember.Checked == true)
+                    {
 
+                        //Создаём или перезаписываем существующий файл
+                        string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+                        path += "\\Local\\Temp\\last_login.tmp";
+                        FileIO.saveAsOwnTextFormat(path, txtLogin.Text);
+
+                    }
+                    // Пользователь существует - получаем группу доступа
+                    string SqlUserGroup = "SELECT ref_group.GroupName from tbl_login INNER join ref_group on ref_group.id=tbl_login.`Group` where login = '" + txtLogin.Text + "'  LIMIT 1";
+                    string group = DB.Sql_Reader(SqlUserGroup);
+                    // Открываем основную форму. Передаем ей значение имя пользователя и группы.
+                    Hide();
+                    MainForm mainform = new MainForm(string.Format("Login: {0}", txtLogin.Text), string.Format("Access Group: {0}", group));
+                    mainform.ShowDialog();
+                    this.Close();
                 }
-                catch (Exception ex) //Хэндлим ошибки
+                else
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MetroFramework.MetroMessageBox.Show(this, "Пользователь заблокирован или запись отсутствует. Проверьте введенные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            Hide();
-            MainForm mainform = new MainForm();
-            mainform.ShowDialog();
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+
+
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
