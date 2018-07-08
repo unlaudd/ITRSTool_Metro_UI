@@ -84,6 +84,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppConfig.Designer.cs">
+      <DependentUpon>AppConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="crypto.cs" />
+    <Compile Include="FileIO.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +139,7 @@
   <ItemGroup>
     <None Include="Resources\diagram40.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\user1.png" />
   </ItemGroup>
