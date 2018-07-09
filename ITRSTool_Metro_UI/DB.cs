@@ -10,11 +10,17 @@ namespace ITRSTool_Metro_UI
 {
     class DB
     {
-        static public DataTable sql_select_dataset(string sql_string)
+    public static string Connector;
+     
+
+
+
+    static public DataTable sql_select_dataset(string sql_string)
         {
             DataTable dt = new DataTable();
 
-            string connStr = Properties.Settings.Default.ConnectionString;
+            
+            string connStr = DB.Connector;
 
 
             MySqlConnection connection = new MySqlConnection(connStr);
@@ -31,11 +37,11 @@ namespace ITRSTool_Metro_UI
         static public void sql_insert_dataset(string sql_string)
         {
 
-            string connStr = Properties.Settings.Default.ConnectionString;
+            string connStr = DB.Connector;
 
 
-            using (MySqlConnection connection = new MySqlConnection(connStr))
-            {
+            MySqlConnection connection = new MySqlConnection(connStr);
+            
 
                 MySqlCommand command = new MySqlCommand();
 
@@ -46,7 +52,7 @@ namespace ITRSTool_Metro_UI
 
                 command.Dispose();
 
-            }
+            
 
 
 
@@ -54,11 +60,10 @@ namespace ITRSTool_Metro_UI
         static public string sql_insert_back(string sql_string)
         {
 
-            string connStr = Properties.Settings.Default.ConnectionString;
+            string connStr = DB.Connector;
 
 
-            using (MySqlConnection connection = new MySqlConnection(connStr))
-            {
+            MySqlConnection connection = new MySqlConnection(connStr);
 
                 MySqlCommand command = new MySqlCommand();
 
@@ -69,7 +74,7 @@ namespace ITRSTool_Metro_UI
                 string value = command.ExecuteScalar().ToString();
                 command.Dispose();
                 return value;
-            }
+            
 
 
 
@@ -77,7 +82,7 @@ namespace ITRSTool_Metro_UI
         static public void sql_update_dataset(string sql_string)
         {
 
-            string connStr = Properties.Settings.Default.ConnectionString;
+            string connStr = DB.Connector;
             MySqlConnection cn = new MySqlConnection(connStr);
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = cn;
@@ -95,7 +100,7 @@ namespace ITRSTool_Metro_UI
         {
 
 
-            string connStr = Properties.Settings.Default.ConnectionString;
+            string connStr = DB.Connector;
 
 
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -108,6 +113,27 @@ namespace ITRSTool_Metro_UI
 
             return value;
 
+        }
+        public static bool DBConnectionStatus(string connStr)
+        {
+
+            try
+            {
+                using (MySqlConnection sqlConn =
+                    new MySqlConnection(connStr))
+                {
+                    sqlConn.Open();
+                    return (sqlConn.State == ConnectionState.Open);
+                }
+            }
+            catch (MySqlException)
+            {
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
     }

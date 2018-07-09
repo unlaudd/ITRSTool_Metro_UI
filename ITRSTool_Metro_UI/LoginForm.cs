@@ -46,7 +46,7 @@ namespace ITRSTool_Metro_UI
             // Необходимо на случай миграции СУБД на другие IP адреса и т.п.
             // Если пользователь валиден, открываем окно настроек.
 
-            if (txtLogin.Text == "thechnic" & txtPass.Text == "Htubjy0101")
+            if (txtLogin.Text == "enginer" & txtPass.Text == "MyPass0101")
             {
                 Hide();
                 AppConfig appconfig = new AppConfig();
@@ -57,43 +57,64 @@ namespace ITRSTool_Metro_UI
 
             try
             {
-                // Проверяем соответствие на сочетание логина/пароля в СУБД. Если 0 - пользователь ввел не верные данные, если 1 - пользователь существует
-                string SqlUserTest = "SELECT COUNT(*) FROM tbl_login where Login = '" + txtLogin.Text + "' and Password = '" + txtPass.Text + "'";
-                int prov = Convert.ToInt32(DB.Sql_Reader(SqlUserTest));
-                
-                
-                if (prov == 1)
+                if (System.IO.File.Exists("options.ini"))
                 {
-                    if (chkRemember.Checked == true)
-                    {
 
-                        //Создаём или перезаписываем существующий файл
-                        string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
-                        path += "\\Local\\Temp\\last_login.tmp";
-                        FileIO.saveAsOwnTextFormat(path, txtLogin.Text);
-
-                    }
-                    // Пользователь существует - получаем группу доступа
-                    string SqlUserGroup = "SELECT ref_group.GroupName from tbl_login INNER join ref_group on ref_group.id=tbl_login.`Group` where login = '" + txtLogin.Text + "'  LIMIT 1";
-                    string group = DB.Sql_Reader(SqlUserGroup);
-                    // Открываем основную форму. Передаем ей значение имя пользователя и группы.
-                    Hide();
-                    MainForm mainform = new MainForm(string.Format("Login: {0}", txtLogin.Text), string.Format("Access Group: {0}", group));
-                    mainform.ShowDialog();
-                    this.Close();
+                    string[] param = Crypto.en_ex().Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    string serv = param[0].ToString();
+                    string port = param[1].ToString();
+                    string bases = param[2].ToString();
+                    string user = param[3].ToString();
+                    string password = param[4].ToString();
+                    
+                    DB.Connector = "server=" + serv + ";user=" + user + ";database=" + bases + ";port=" + port + ";password=" + password + "; Character Set = utf8" + "; convert zero datetime = True" + "; SslMode=none;";
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Пользователь заблокирован или запись отсутствует. Проверьте введенные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "Отсутствует файл настроек. Вход в программу невозможен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                bool CheckConnect = DB.DBConnectionStatus(DB.Connector);
+                if (CheckConnect != false)
+                {
+
+                    // Проверяем соответствие на сочетание логина/пароля в СУБД. Если 0 - пользователь ввел не верные данные, если 1 - пользователь существует
+                    string SqlUserTest = "SELECT COUNT(*) FROM tbl_login where Login = '" + txtLogin.Text + "' and Password = '" + txtPass.Text + "'";
+                    int prov = Convert.ToInt32(DB.Sql_Reader(SqlUserTest));
+
+
+                    if (prov == 1)
+                    {
+                        if (chkRemember.Checked == true)
+                        {
+                            //Создаём или перезаписываем существующий файл
+                            string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+                            path += "\\Local\\Temp\\last_login.tmp";
+                            FileIO.saveAsOwnTextFormat(path, txtLogin.Text);
+                        }
+                        // Пользователь существует - получаем группу доступа
+                        string SqlUserGroup = "SELECT ref_group.GroupName from tbl_login INNER join ref_group on ref_group.id=tbl_login.`Group` where login = '" + txtLogin.Text + "'  LIMIT 1";
+                        string group = DB.Sql_Reader(SqlUserGroup);
+                        // Открываем основную форму. Передаем ей значение имя пользователя и группы.
+                        Hide();
+                        MainForm mainform = new MainForm(string.Format("Login: {0}", txtLogin.Text), string.Format("Access Group: {0}", group));
+                        mainform.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "Пользователь заблокирован или запись отсутствует. Проверьте введенные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Нет соединения с СУБД. Проверьте настройки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-
-
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -103,7 +124,7 @@ namespace ITRSTool_Metro_UI
             // Получаем системную папку пользователя.
             string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             // Открываем файл с "Запомнить меня" логином
-            System.IO.StreamReader sr = new System.IO.StreamReader("" + path + "\\Local\\Temp\\last_login.tmp", Encoding.Default);
+            StreamReader sr = new StreamReader("" + path + "\\Local\\Temp\\last_login.tmp", Encoding.Default);
             string line = null;
             while ((line = sr.ReadLine()) != null)
             {
