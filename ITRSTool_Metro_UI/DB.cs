@@ -11,11 +11,11 @@ namespace ITRSTool_Metro_UI
     class DB
     {
     public static string Connector;
-     
 
 
 
-    static public DataTable sql_select_dataset(string sql_string)
+        // Класс - получает строку SQL - отдает набор данных
+        static public DataTable sql_select_dataset(string sql_string)
         {
             DataTable dt = new DataTable();
 
@@ -34,7 +34,8 @@ namespace ITRSTool_Metro_UI
 
             return dt;
         }
-        static public void sql_insert_dataset(string sql_string)
+        // Класс - получает строку SQL - делает сохранение
+        static public void sql_insert(string sql_string)
         {
 
             string connStr = DB.Connector;
@@ -51,12 +52,8 @@ namespace ITRSTool_Metro_UI
                 int numRowsUpdated_end = command.ExecuteNonQuery();
 
                 command.Dispose();
-
-            
-
-
-
         }
+        // Класс - получает строку SQL - делает сохранение - отдает ID сохраненной строчки
         static public string sql_insert_back(string sql_string)
         {
 
@@ -74,12 +71,10 @@ namespace ITRSTool_Metro_UI
                 string value = command.ExecuteScalar().ToString();
                 command.Dispose();
                 return value;
-            
-
-
 
         }
-        static public void sql_update_dataset(string sql_string)
+        // Класс - получает строку SQL - делает обновление.
+        static public void sql_update(string sql_string)
         {
 
             string connStr = DB.Connector;
@@ -94,7 +89,7 @@ namespace ITRSTool_Metro_UI
 
 
         }
-
+        // Класс - получает строку SQL - отдает одно значение
         static public string Sql_Reader(string sql_string)
 
         {
@@ -114,6 +109,7 @@ namespace ITRSTool_Metro_UI
             return value;
 
         }
+        // Класс для проверки соединения с СУБД. Получает строку коннекта, на выходе true, либо false
         public static bool DBConnectionStatus(string connStr)
         {
 

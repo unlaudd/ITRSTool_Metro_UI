@@ -27,7 +27,26 @@ namespace ITRSTool_Metro_UI
 
         private void запчастиДляТСДToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panelOff();
+            panPrihod.Location = new Point(20, 87);
+            panPrihod.Show();
+            panPrihod.Size = new Size(1064, 440);
+            cmbPrihodSpareParts.Focus();
+        }
 
+        public void panelOff()
+        {
+            panPrihod.Visible = false;
+            panChangePass.Visible = false;
+        }
+
+        private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelOff();
+            panChangePass.Location = new Point(20, 87);
+            panChangePass.Show();
+            panChangePass.Size = new Size(300, 130);
+            txtChangePassFirst.Focus();
         }
     }
 }
