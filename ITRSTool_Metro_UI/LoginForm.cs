@@ -111,6 +111,11 @@ namespace ITRSTool_Metro_UI
                     MetroFramework.MetroMessageBox.Show(this, "Нет соединения с СУБД. Проверьте настройки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (System.Security.Cryptography.CryptographicException)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Данные в файле настроек повреждены. Необходимо пересоздать файл!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);

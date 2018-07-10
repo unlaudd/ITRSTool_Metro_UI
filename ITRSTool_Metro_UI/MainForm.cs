@@ -24,5 +24,10 @@ namespace ITRSTool_Metro_UI
         {
             
         }
+
+        private void запчастиДляТСДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
