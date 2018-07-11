@@ -79,7 +79,7 @@ namespace ITRSTool_Metro_UI
                 {
 
                     // Проверяем соответствие на сочетание логина/пароля в СУБД. Если 0 - пользователь ввел не верные данные, если 1 - пользователь существует
-                    string SqlUserTest = "SELECT COUNT(*) FROM tbl_login where Login = '" + txtLogin.Text + "' and Password = '" + txtPass.Text + "'";
+                    string SqlUserTest = "SELECT COUNT(*) FROM tbl_login where Login = '" + txtLogin.Text + "' and Password = '" + encrypt_pass.GetHashString(txtPass.Text) + "'";
                     int prov = Convert.ToInt32(DB.Sql_Reader(SqlUserTest));
 
 
@@ -97,7 +97,7 @@ namespace ITRSTool_Metro_UI
                         string group = DB.Sql_Reader(SqlUserGroup);
                         // Открываем основную форму. Передаем ей значение имя пользователя и группы.
                         Hide();
-                        MainForm mainform = new MainForm(string.Format("Login: {0}", txtLogin.Text), string.Format("Access Group: {0}", group));
+                        MainForm mainform = new MainForm(string.Format(txtLogin.Text), string.Format(group));
                         mainform.ShowDialog();
                         this.Close();
                     }

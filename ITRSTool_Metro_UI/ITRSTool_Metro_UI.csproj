@@ -134,6 +134,12 @@
     </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="ErrorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorView.Designer.cs">
+      <DependentUpon>ErrorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileIO.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -151,6 +157,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AppConfig.resx">
       <DependentUpon>AppConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorView.resx">
+      <DependentUpon>ErrorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
