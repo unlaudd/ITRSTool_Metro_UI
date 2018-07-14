@@ -50,7 +50,7 @@ namespace ITRSTool_Metro_UI
             {
                 Hide();
                 AppConfig appconfig = new AppConfig();
-                appconfig.ShowDialog();
+                appconfig.Show();
                 this.Close();
             }
             // Коннектимся к СУБД, используя класс.

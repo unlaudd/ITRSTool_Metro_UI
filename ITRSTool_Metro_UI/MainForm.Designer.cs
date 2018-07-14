@@ -313,9 +313,9 @@
             this.chkBoxPrihodMulti.AutoSize = true;
             this.chkBoxPrihodMulti.Location = new System.Drawing.Point(3, 306);
             this.chkBoxPrihodMulti.Name = "chkBoxPrihodMulti";
-            this.chkBoxPrihodMulti.Size = new System.Drawing.Size(144, 15);
+            this.chkBoxPrihodMulti.Size = new System.Drawing.Size(182, 15);
             this.chkBoxPrihodMulti.TabIndex = 11;
-            this.chkBoxPrihodMulti.Text = "Множественный ввод";
+            this.chkBoxPrihodMulti.Text = "Сохранить номер накладной";
             this.chkBoxPrihodMulti.UseSelectable = true;
             // 
             // tilPrihodAddInGrid
