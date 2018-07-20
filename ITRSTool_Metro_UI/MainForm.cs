@@ -39,11 +39,14 @@ namespace ITRSTool_Metro_UI
             ToolTipPrihod.SetToolTip(tilPrihodCancelInGrid, "Удалить выделенные данные из таблицы");
             ToolTipPrihod.SetToolTip(tilPrihodAddInBase, "Сохранить все данные из таблицы");
             ToolTipPrihod.SetToolTip(tilPrihodCancel, "Закрыть форму без сохранения");
+            ToolTipPrihod.SetToolTip(tilPrihodEditGrid, "Редактировать выделенную ячейку");
+            ToolTipPrihod.SetToolTip(tilPrihodClearElem, "Очистить поля ввода в форме");
+
             datPrihodDelivery.Format = DateTimePickerFormat.Custom;
             datPrihodDelivery.CustomFormat = "yyyy-MM-dd";
             try
             {
-                string SPartsSql = "select SPartName from ref_spart_pdt_etc";
+                string SPartsSql = "select SPartName from ref_spart_pdt_etc ORDER BY SPartName";
                 DataTable SPartsDataTable = new DataTable();
                 SPartsDataTable = DB.sql_select_dataset(SPartsSql);
                 cmbPrihodSpareParts.DataSource = SPartsDataTable;
@@ -60,6 +63,8 @@ namespace ITRSTool_Metro_UI
         {
             panPrihod.Visible = false;
             panChangePass.Visible = false;
+            panSPartsPrihod.Visible = false;
+            panSkladTrans.Visible = false;
         }
 
         private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,8 +121,8 @@ namespace ITRSTool_Metro_UI
             {
                 Grid.Columns.Add("", "");
             }
-           Grid.Rows.Add(N);
-       }
+            Grid.Rows.Add(N);
+        }
 
 
         private DataTable GetDataTableFromDGV(DataGridView dgv)
@@ -167,10 +172,10 @@ namespace ITRSTool_Metro_UI
                 if (txtPrihodAmountDelivery.Text != "" && txtPrihodCostDelivery.Text != "" && txtPrihodNumDelivery.Text != "" && txtPrihodSPartsInDelivery.Text != "")
                 {
                     // Проверяем поле стоимость на правильность ввода. Значение не отрицательное, double
-                    if (Regex.IsMatch(txtPrihodCostDelivery.Text.ToString(), @"\A[0-9]{1,10}(?:[.,][0-9]{1,2})?\z"))
+                    if (RegexDouble(txtPrihodCostDelivery.Text.ToString()) == true)
                     {
                         // Проверяем поле количество на правильность ввода. Первая цифра не может быть 0.
-                        if (Regex.IsMatch(txtPrihodAmountDelivery.Text.ToString(), @"\A[1-9]{1}(?:[0-9]{1,10})?\z"))
+                        if (RegexDigital(txtPrihodAmountDelivery.Text.ToString()) == true)
                         {
                             // Запрос в СУБД на поиск совпадений по накладным
                             string SkladCheckSql = "select count(*) from tbl_prihod where tbl_prihod.`СonsNumber`= '" + txtPrihodNumDelivery.Text + "' and tbl_prihod.ConsDate = '" + datPrihodDelivery.Text + "' and sklad = (select SkladNum from tbl_sklad WHERE EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = 1)";
@@ -191,32 +196,13 @@ namespace ITRSTool_Metro_UI
                                         // При нажатии на кнопку ок, добавляем данные в табличку и очищаем все поля ввода.
                                         string[] strokaEshe = { cmbPrihodSpareParts.Text, txtPrihodSPartsInDelivery.Text, DateDelivery, txtPrihodNumDelivery.Text, txtPrihodAmountDelivery.Text, txtPrihodCostDelivery.Text };
                                         addGridParam(strokaEshe, gridPrihod);
-                                        txtPrihodAmountDelivery.Text = "";
-                                        txtPrihodCostDelivery.Text = "";
-                                        if (chkBoxPrihodMulti.Checked)
-                                        {
-                                            txtPrihodNumDelivery.Text = "";
-                                            txtPrihodSPartsInDelivery.Text = "";
-                                        }
-                                        else
-                                        {
-                                            txtPrihodNumDelivery.Text = "";
-                                        }
+                                        multiCheck();
                                     }
                                     else
                                     {
                                         // При нажатии на отмену, очищаем все поля ввода и выходим из выполнения.
-                                        if (chkBoxPrihodMulti.Checked)
-                                        {
-                                        txtPrihodAmountDelivery.Text = "";
-                                        txtPrihodCostDelivery.Text = "";
-                                        txtPrihodSPartsInDelivery.Text = "";
-                                        return;
-                                        }
-                                        else
-                                        {
-                                            txtPrihodNumDelivery.Text = "";
-                                        }
+
+                                        multiCheck();
                                     }
                                 }
                                 else
@@ -224,16 +210,7 @@ namespace ITRSTool_Metro_UI
                                     // Если при выборе просмотра совпадений на складе выбрано cancel, то добавляем данные в табличку и чистим поля ввода.
                                     string[] strokaEshe = { cmbPrihodSpareParts.Text, txtPrihodSPartsInDelivery.Text, DateDelivery, txtPrihodNumDelivery.Text, txtPrihodAmountDelivery.Text, txtPrihodCostDelivery.Text };
                                     addGridParam(strokaEshe, gridPrihod);
-                                    if (chkBoxPrihodMulti.Checked)
-                                    {
-                                    txtPrihodAmountDelivery.Text = "";
-                                    txtPrihodCostDelivery.Text = "";
-                                    txtPrihodSPartsInDelivery.Text = "";
-                                    }
-                                    else
-                                    {
-                                        txtPrihodNumDelivery.Text = "";
-                                    }
+                                    multiCheck();
                                 }
                             }
 
@@ -242,16 +219,7 @@ namespace ITRSTool_Metro_UI
                                 // Если не обнаружено совпадений по накладной, то добавляем данные в табличку и чистим поля ввода.
                                 string[] strokaEshe = { cmbPrihodSpareParts.Text, txtPrihodSPartsInDelivery.Text, DateDelivery, txtPrihodNumDelivery.Text, txtPrihodAmountDelivery.Text, txtPrihodCostDelivery.Text };
                                 addGridParam(strokaEshe, gridPrihod);
-                                if (chkBoxPrihodMulti.Checked)
-                                {
-                                txtPrihodAmountDelivery.Text = "";
-                                txtPrihodCostDelivery.Text = "";
-                                txtPrihodSPartsInDelivery.Text = "";
-                                }
-                                else
-                                {
-                                    txtPrihodNumDelivery.Text = "";
-                                }
+                                multiCheck();
                             }
                         }
                         else
@@ -294,25 +262,34 @@ namespace ITRSTool_Metro_UI
             }
             else
             {
-              return;
+                return;
             }
         }
 
-        private void txtPrihodAmountDelivery_KeyPress(object sender, KeyPressEventArgs e)
-        {
 
+        private void IntCheckClick(object sender, KeyPressEventArgs e)
+        {
             char number = e.KeyChar;
             if (!char.IsDigit(number) && number != 8)
             {
                 e.Handled = true;
             }
-
         }
 
-        private void txtPrihodCostDelivery_Click(object sender, KeyPressEventArgs e)
+
+        private void DoubleCheck_Click(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!char.IsDigit(number) && number != 8 && number != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void NumInc(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!char.IsDigit(number) && number != 8 && number != 73 && number != 84 && number != 45)
             {
                 e.Handled = true;
             }
@@ -350,6 +327,350 @@ namespace ITRSTool_Metro_UI
                 MessageBox.Show("Error: " + ex.Message);
             }
 
+        }
+
+        // Функция проверки значения int на совпадение
+        public static bool RegexDigital(string StringToRegex)
+        {
+
+            if (Regex.IsMatch(StringToRegex, @"\A[1-9]{1}(?:[0-9]{1,10})?\z"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Функция проверки значения double на совпадение
+        public static bool RegexDouble(string StringToRegex)
+        {
+            if (Regex.IsMatch(StringToRegex, @"\A[1-9]{1,10}(?:[.,][0-9]{1,2})?\z"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool RegexIncNum (string StringToRegex)
+        {
+            if (Regex.IsMatch(StringToRegex, @"\A[IT,-]{3}[1-9]{1}(?:[0-9]{1,10})?\z"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Процедура очистки полей
+        public void multiCheck()
+        {
+
+            if (chkBoxPrihodMulti.Checked)
+            {
+                txtPrihodAmountDelivery.Text = "";
+                txtPrihodCostDelivery.Text = "";
+                txtPrihodSPartsInDelivery.Text = "";
+            }
+            else
+            {
+                txtPrihodNumDelivery.Text = "";
+                txtPrihodAmountDelivery.Text = "";
+                txtPrihodCostDelivery.Text = "";
+                txtPrihodSPartsInDelivery.Text = "";
+            }
+        }
+
+        // Заполняем поля для редактирования и удаляем загруженную ячейку
+        private void tilPrihodEditGrid_Click(object sender, EventArgs e)
+        {
+            if (gridPrihod.CurrentRow != null)
+            {
+                cmbPrihodSpareParts.Text = gridPrihod.CurrentRow.Cells[0].Value.ToString();
+                txtPrihodSPartsInDelivery.Text = gridPrihod.CurrentRow.Cells[1].Value.ToString();
+                datPrihodDelivery.Value = Convert.ToDateTime(gridPrihod.CurrentRow.Cells[2].Value.ToString());
+                txtPrihodNumDelivery.Text = gridPrihod.CurrentRow.Cells[3].Value.ToString();
+                txtPrihodAmountDelivery.Text = gridPrihod.CurrentRow.Cells[4].Value.ToString();
+                txtPrihodCostDelivery.Text = gridPrihod.CurrentRow.Cells[5].Value.ToString();
+                gridPrihod.Rows.Remove(gridPrihod.CurrentRow);
+            }
+        }
+
+        // Очищаем поля ввода
+        private void tilPrihodClearElem_Click(object sender, EventArgs e)
+        {
+            multiCheck();
+        }
+
+        private void расходкаДляПайкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelOff();
+            panSPartsPrihod.Location = new Point(20, 87);
+            panSPartsPrihod.Size = new Size(1061, 441);
+            panSPartsPrihod.Visible = true;
+            string SPartsPrihodSql = "select SPartName from ref_spart_cable ORDER BY SPartName";
+            DataTable SPartsPrihod = new DataTable();
+            SPartsPrihod = DB.sql_select_dataset(SPartsPrihodSql);
+            cmbSPartPrihod.DataSource = SPartsPrihod;
+            cmbSPartPrihod.DisplayMember = "SPartName";
+            cmbSPartPrihod.Focus();
+        }
+
+        private void tilSPartPrihodDeleteFromGrid_Click(object sender, EventArgs e)
+        {
+            if (gridSPartPrihod.CurrentRow != null)
+            {
+                gridSPartPrihod.Rows.Remove(gridSPartPrihod.CurrentRow);
+            }
+        }
+
+        private void tilSPartPrihodAddToGrid_Click(object sender, EventArgs e)
+        {
+            DataTable dtCheckTable = new DataTable();
+            dtCheckTable = GetDataTableFromDGV(gridSPartPrihod);
+            try
+            {
+                // Проверяем на совпадение введенные данные с табличкой
+                for (int i = 0; i < dtCheckTable.Rows.Count; i++)
+                {
+                    if (dtCheckTable.Rows[i][0].ToString() == cmbSPartPrihod.Text && dtCheckTable.Rows[i][1].ToString() == txtSPartPrihod.Text)
+                    {
+
+                        MetroFramework.MetroMessageBox.Show(this, "Запись уже существует в таблице. Проверьте ввод данных", "Внимание", MessageBoxButtons.OK);
+                        return;
+                    }
+
+                }
+                if (txtSPartPrihod.Text != "")
+                {
+                    if (RegexDigital(txtSPartPrihod.Text) == true)
+                    {
+                        string[] strokaEshe = { cmbSPartPrihod.Text, txtSPartPrihod.Text };
+                        addGridParam(strokaEshe, gridSPartPrihod);
+                        txtSPartPrihod.Text = "";
+                    }
+                    else
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "Не верно заполнено поле количество. Данные не добавлены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Не заполнены необходимые поля", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtSPartPrihod.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void tilSPartPrihodCancel_Click(object sender, EventArgs e)
+        {
+            // Описывааем действия на нажитие кнопки закрытия формы
+            if (MetroFramework.MetroMessageBox.Show(this, "При закрытии формы все несохраненные данные удалены. Продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+            {
+                gridSPartPrihod.Rows.Clear();
+                txtSPartPrihod.Text = "";
+                panelOff();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void tilSPartPrihodAddToBase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridSPartPrihod.Rows.Count != 0)
+                {
+                    DataTable dt = new DataTable();
+                    dt = GetDataTableFromDGV(gridSPartPrihod);
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string CheckBeforInsertSQL = "SELECT count(*) FROM `tbl_spart_sklad` where SPartName = (select id from ref_spart_cable where SPartName = '"+cmbSPartPrihod.Text+"') and Sklad = (select SkladNum from tbl_sklad WHERE EngLogin = (select id from tbl_login where Login = '"+lblLoginName.Text+"') and NameAction = 3)";
+                        int CheckBeforInsert = Convert.ToInt32(DB.Sql_Reader(CheckBeforInsertSQL));
+                        if (CheckBeforInsert == 0)
+                        {
+                            string SPartInsertSql = "insert into `tbl_spart_sklad`(SPartName, Amount, Sklad) Values((select id from ref_spart_cable where SPartName = '" + dt.Rows[i][0] + "'),'" + dt.Rows[i][1] + "',(select SkladNum from tbl_sklad WHERE EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = 3))";
+                            DB.sql_insert(SPartInsertSql);
+                        }
+                        else
+                        {
+                            string SPartUpdateSql = "update `tbl_spart_sklad` SET Amount = Amount + " + dt.Rows[i][1] + " where SPartName = (select id from ref_spart_cable where SPartName = '" + dt.Rows[i][0] + "') and Sklad = (select SkladNum from tbl_sklad WHERE EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = 3)";
+                            DB.sql_update(SPartUpdateSql);
+                        }
+                    }
+                    gridSPartPrihod.Rows.Clear();
+                    txtSPartPrihod.Text = "";
+                    MetroFramework.MetroMessageBox.Show(this, "Данные добавлены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Табличка пуста, нечего добавлять!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void пересылкаПоСкладамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelOff();
+            panSkladTrans.Location = new Point(20, 87);
+            panSkladTrans.Size = new Size(1064, 442);
+            panSkladTrans.Visible = true;
+
+            string SPartsPrihodSql = "select SPartName from ref_spart_cable ORDER BY SPartName";
+            DataTable SPartsPrihod = new DataTable();
+            SPartsPrihod = DB.sql_select_dataset(SPartsPrihodSql);
+            cmbSPartPrihod.DataSource = SPartsPrihod;
+            cmbSPartPrihod.DisplayMember = "SPartName";
+            cmbSPartPrihod.Focus();
+        }
+
+        private void rbSkladTransPDTSelection_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void тСДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc order by SPartName";
+            DataTable RepairSParts = new DataTable();
+            RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
+            cmbRepairSParts.DataSource = RepairSParts;
+            cmbRepairSParts.DisplayMember = "SPartName";
+
+            string RepairSCSQL = "select NumSc from ref_sc order by NumSc";
+            DataTable RepairSC = new DataTable();
+            RepairSC = DB.sql_select_dataset(RepairSCSQL);
+            cmbRepairSC.DataSource = RepairSC;
+            cmbRepairSC.DisplayMember = "NumSc";
+
+            string RepairEquipSQL = "select EQName from ref_equipment order by EQName";
+            DataTable RepairEquip = new DataTable();
+            RepairEquip = DB.sql_select_dataset(RepairEquipSQL);
+            cmbRepairEquipment.DataSource = RepairEquip;
+            cmbRepairEquipment.DisplayMember = "EQName";
+
+        }
+
+        private void tilRepairAddGrid_Click(object sender, EventArgs e)
+        {
+            if (cmbRepairSParts.Text == "")
+            {
+                return;
+            }
+            try
+            {
+                string[] strokaEshe = { cmbRepairSParts.Text };
+                addGridParam(strokaEshe, gridRepair);
+
+
+                DataTable dtCheckTable = new DataTable();
+                dtCheckTable = GetDataTableFromDGV(gridRepair);
+                string DataInTableNotIn = "";
+
+                for (int i = 0; i < dtCheckTable.Rows.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        DataInTableNotIn = DataInTableNotIn + "'" + dtCheckTable.Rows[i][0].ToString() + "'";
+                    }
+                    else
+                    {
+                        DataInTableNotIn = DataInTableNotIn + ", '" + dtCheckTable.Rows[i][0].ToString() + "'";
+                    }
+                }
+                cmbRepairSParts.DataSource = null;
+                string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc where SPartName not in (" + DataInTableNotIn + ") order by SPartName";
+                
+                DataTable RepairSParts = new DataTable();
+                RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
+                cmbRepairSParts.DataSource = RepairSParts;
+                cmbRepairSParts.DisplayMember = "SPartName";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void tilRepairDeleteGrid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridRepair.CurrentRow != null)
+                {
+                    gridRepair.Rows.Remove(gridRepair.CurrentRow);
+
+                    DataTable dtCheckTable = new DataTable();
+                    dtCheckTable = GetDataTableFromDGV(gridRepair);
+                    string DataInTableNotIn = "";
+                    if (dtCheckTable.Rows.Count == 0)
+                    {
+
+                        cmbRepairSParts.DataSource = null;
+                        string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+
+                        DataTable RepairSPartsnull = new DataTable();
+                        RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
+                        cmbRepairSParts.DataSource = RepairSPartsnull;
+                        cmbRepairSParts.DisplayMember = "SPartName";
+                        return;
+                    }
+                    for (int i = 0; i < dtCheckTable.Rows.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            DataInTableNotIn = DataInTableNotIn + "'" + dtCheckTable.Rows[i][0].ToString() + "'";
+                        }
+                        else
+                        {
+                            DataInTableNotIn = DataInTableNotIn + ", '" + dtCheckTable.Rows[i][0].ToString() + "'";
+                        }
+                    }
+                    cmbRepairSParts.DataSource = null;
+                    string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc where SPartName not in (" + DataInTableNotIn + ") order by SPartName";
+                    DataTable RepairSParts = new DataTable();
+                    RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
+                    cmbRepairSParts.DataSource = RepairSParts;
+                    cmbRepairSParts.DisplayMember = "SPartName";
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void tilRepairSave_Click(object sender, EventArgs e)
+        {
+            if (RegexIncNum(txtRepairIncNumber.Text) == true)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Обломка");
+            }
         }
     }
 }

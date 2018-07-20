@@ -251,5 +251,29 @@
   <ItemGroup>
     <None Include="Resources\registerBig.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forbidden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eraser_46865.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout256_24927.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

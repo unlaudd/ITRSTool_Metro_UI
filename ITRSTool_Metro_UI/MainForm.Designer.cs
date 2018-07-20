@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.приходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +63,8 @@
             this.lblLoginName = new MetroFramework.Controls.MetroLabel();
             this.lblGroup = new MetroFramework.Controls.MetroLabel();
             this.panPrihod = new MetroFramework.Controls.MetroPanel();
+            this.tilPrihodClearElem = new MetroFramework.Controls.MetroTile();
+            this.tilPrihodEditGrid = new MetroFramework.Controls.MetroTile();
             this.tilPrihodCancel = new MetroFramework.Controls.MetroTile();
             this.chkBoxPrihodMulti = new MetroFramework.Controls.MetroCheckBox();
             this.tilPrihodAddInGrid = new MetroFramework.Controls.MetroTile();
@@ -81,19 +92,79 @@
             this.panChangePass = new MetroFramework.Controls.MetroPanel();
             this.tilChangePassCancel = new MetroFramework.Controls.MetroTile();
             this.tilChangePassAccept = new MetroFramework.Controls.MetroTile();
-            this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtChangePassFirstConfirm = new MetroFramework.Controls.MetroTextBox();
             this.txtChangePassFirst = new MetroFramework.Controls.MetroTextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panSPartsPrihod = new MetroFramework.Controls.MetroPanel();
+            this.tilSPartPrihodDeleteFromGrid = new MetroFramework.Controls.MetroTile();
+            this.tilSPartPrihodAddToGrid = new MetroFramework.Controls.MetroTile();
+            this.tilSPartPrihodCancel = new MetroFramework.Controls.MetroTile();
+            this.tilSPartPrihodAddToBase = new MetroFramework.Controls.MetroTile();
+            this.gridSPartPrihod = new MetroFramework.Controls.MetroGrid();
+            this.GridSPartSpart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridSPartAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblSPartPrihodAmount = new MetroFramework.Controls.MetroLabel();
+            this.cmbSPartPrihod = new MetroFramework.Controls.MetroComboBox();
+            this.txtSPartPrihod = new MetroFramework.Controls.MetroTextBox();
+            this.lblSPartPrihodCombo = new MetroFramework.Controls.MetroLabel();
+            this.pbMainFormLogin = new System.Windows.Forms.PictureBox();
+            this.pbMainFormGroup = new System.Windows.Forms.PictureBox();
+            this.panSkladTrans = new MetroFramework.Controls.MetroPanel();
+            this.tilSkladTransSaveToBase = new MetroFramework.Controls.MetroTile();
+            this.tilSkladTransCloseForm = new MetroFramework.Controls.MetroTile();
+            this.tilSkladTransDeleteFromGrid = new MetroFramework.Controls.MetroTile();
+            this.tilSkladTransAddToGrid = new MetroFramework.Controls.MetroTile();
+            this.gridSkladTrans = new MetroFramework.Controls.MetroGrid();
+            this.clmSkladTransSkladToTrans = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSkladTransSPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSkladTransAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSkladTransAmount = new MetroFramework.Controls.MetroTextBox();
+            this.lblSkladTransAmount = new MetroFramework.Controls.MetroLabel();
+            this.cmbSkladTransSPartName = new MetroFramework.Controls.MetroComboBox();
+            this.lblSkladTransSPartName = new MetroFramework.Controls.MetroLabel();
+            this.cmbSkladTransSkladSelect = new MetroFramework.Controls.MetroComboBox();
+            this.lblSkladTransCombo = new MetroFramework.Controls.MetroLabel();
+            this.rbSkladTransSPartSelection = new MetroFramework.Controls.MetroRadioButton();
+            this.rbSkladTransPDTSelection = new MetroFramework.Controls.MetroRadioButton();
+            this.panRepair = new MetroFramework.Controls.MetroPanel();
+            this.txtRepairDevInOperation = new MetroFramework.Controls.MetroTextBox();
+            this.lblRepairPerfWork = new MetroFramework.Controls.MetroLabel();
+            this.tilRepairCancel = new MetroFramework.Controls.MetroTile();
+            this.tilRepairAddGrid = new MetroFramework.Controls.MetroTile();
+            this.tilRepairDeleteGrid = new MetroFramework.Controls.MetroTile();
+            this.tilRepairSave = new MetroFramework.Controls.MetroTile();
+            this.gridRepair = new MetroFramework.Controls.MetroGrid();
+            this.clmRepairSPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkRepairUsedAddSParts = new MetroFramework.Controls.MetroCheckBox();
+            this.chkRepairFailureConfirmed = new MetroFramework.Controls.MetroCheckBox();
+            this.txtRepairIncNumber = new MetroFramework.Controls.MetroTextBox();
+            this.txtRepairPerfWork = new MetroFramework.Controls.MetroTextBox();
+            this.txtRepairFailureName = new MetroFramework.Controls.MetroTextBox();
+            this.txtRepairInvNumber = new MetroFramework.Controls.MetroTextBox();
+            this.cmbRepairEquipment = new MetroFramework.Controls.MetroComboBox();
+            this.cmbRepairSParts = new MetroFramework.Controls.MetroComboBox();
+            this.cmbRepairSC = new MetroFramework.Controls.MetroComboBox();
+            this.lblRepairFailureName = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairIncNumber = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairInvNumber = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairEquipment = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairDevInOperation = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairSParts = new MetroFramework.Controls.MetroLabel();
+            this.lblRepairSC = new MetroFramework.Controls.MetroLabel();
             this.menuStrip1.SuspendLayout();
             this.panPrihod.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPrihod)).BeginInit();
             this.panChangePass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panSPartsPrihod.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSPartPrihod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainFormLogin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainFormGroup)).BeginInit();
+            this.panSkladTrans.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSkladTrans)).BeginInit();
+            this.panRepair.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRepair)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -143,12 +214,14 @@
             this.расходкаДляПайкиToolStripMenuItem.Name = "расходкаДляПайкиToolStripMenuItem";
             this.расходкаДляПайкиToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.расходкаДляПайкиToolStripMenuItem.Text = "Расходка для пайки";
+            this.расходкаДляПайкиToolStripMenuItem.Click += new System.EventHandler(this.расходкаДляПайкиToolStripMenuItem_Click);
             // 
             // пересылкаПоСкладамToolStripMenuItem
             // 
             this.пересылкаПоСкладамToolStripMenuItem.Name = "пересылкаПоСкладамToolStripMenuItem";
             this.пересылкаПоСкладамToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.пересылкаПоСкладамToolStripMenuItem.Text = "Пересылка по складам";
+            this.пересылкаПоСкладамToolStripMenuItem.Click += new System.EventHandler(this.пересылкаПоСкладамToolStripMenuItem_Click);
             // 
             // ремонтыToolStripMenuItem
             // 
@@ -163,6 +236,7 @@
             this.тСДToolStripMenuItem.Name = "тСДToolStripMenuItem";
             this.тСДToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.тСДToolStripMenuItem.Text = "ТСД";
+            this.тСДToolStripMenuItem.Click += new System.EventHandler(this.тСДToolStripMenuItem_Click);
             // 
             // паяльныеРаботыToolStripMenuItem
             // 
@@ -248,7 +322,7 @@
             // lblLoginName
             // 
             this.lblLoginName.AutoSize = true;
-            this.lblLoginName.Location = new System.Drawing.Point(232, 32);
+            this.lblLoginName.Location = new System.Drawing.Point(695, 35);
             this.lblLoginName.Name = "lblLoginName";
             this.lblLoginName.Size = new System.Drawing.Size(83, 19);
             this.lblLoginName.TabIndex = 2;
@@ -257,7 +331,7 @@
             // lblGroup
             // 
             this.lblGroup.AutoSize = true;
-            this.lblGroup.Location = new System.Drawing.Point(432, 32);
+            this.lblGroup.Location = new System.Drawing.Point(883, 35);
             this.lblGroup.Name = "lblGroup";
             this.lblGroup.Size = new System.Drawing.Size(78, 19);
             this.lblGroup.TabIndex = 4;
@@ -265,6 +339,8 @@
             // 
             // panPrihod
             // 
+            this.panPrihod.Controls.Add(this.tilPrihodClearElem);
+            this.panPrihod.Controls.Add(this.tilPrihodEditGrid);
             this.panPrihod.Controls.Add(this.tilPrihodCancel);
             this.panPrihod.Controls.Add(this.chkBoxPrihodMulti);
             this.panPrihod.Controls.Add(this.tilPrihodAddInGrid);
@@ -286,24 +362,50 @@
             this.panPrihod.HorizontalScrollbarBarColor = true;
             this.panPrihod.HorizontalScrollbarHighlightOnWheel = false;
             this.panPrihod.HorizontalScrollbarSize = 10;
-            this.panPrihod.Location = new System.Drawing.Point(20, 93);
+            this.panPrihod.Location = new System.Drawing.Point(232, 32);
             this.panPrihod.Name = "panPrihod";
-            this.panPrihod.Size = new System.Drawing.Size(1064, 440);
+            this.panPrihod.Size = new System.Drawing.Size(10, 10);
             this.panPrihod.TabIndex = 0;
             this.panPrihod.VerticalScrollbarBarColor = true;
             this.panPrihod.VerticalScrollbarHighlightOnWheel = false;
             this.panPrihod.VerticalScrollbarSize = 10;
             this.panPrihod.Visible = false;
             // 
+            // tilPrihodClearElem
+            // 
+            this.tilPrihodClearElem.ActiveControl = null;
+            this.tilPrihodClearElem.Location = new System.Drawing.Point(78, 362);
+            this.tilPrihodClearElem.Name = "tilPrihodClearElem";
+            this.tilPrihodClearElem.Size = new System.Drawing.Size(32, 32);
+            this.tilPrihodClearElem.Style = MetroFramework.MetroColorStyle.White;
+            this.tilPrihodClearElem.TabIndex = 14;
+            this.tilPrihodClearElem.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.eraser_46865;
+            this.tilPrihodClearElem.UseSelectable = true;
+            this.tilPrihodClearElem.UseTileImage = true;
+            this.tilPrihodClearElem.Click += new System.EventHandler(this.tilPrihodClearElem_Click);
+            // 
+            // tilPrihodEditGrid
+            // 
+            this.tilPrihodEditGrid.ActiveControl = null;
+            this.tilPrihodEditGrid.Location = new System.Drawing.Point(114, 363);
+            this.tilPrihodEditGrid.Name = "tilPrihodEditGrid";
+            this.tilPrihodEditGrid.Size = new System.Drawing.Size(31, 31);
+            this.tilPrihodEditGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilPrihodEditGrid.TabIndex = 13;
+            this.tilPrihodEditGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.pencil;
+            this.tilPrihodEditGrid.UseSelectable = true;
+            this.tilPrihodEditGrid.UseTileImage = true;
+            this.tilPrihodEditGrid.Click += new System.EventHandler(this.tilPrihodEditGrid_Click);
+            // 
             // tilPrihodCancel
             // 
             this.tilPrihodCancel.ActiveControl = null;
-            this.tilPrihodCancel.Location = new System.Drawing.Point(983, 386);
+            this.tilPrihodCancel.Location = new System.Drawing.Point(983, 388);
             this.tilPrihodCancel.Name = "tilPrihodCancel";
             this.tilPrihodCancel.Size = new System.Drawing.Size(32, 32);
             this.tilPrihodCancel.Style = MetroFramework.MetroColorStyle.White;
             this.tilPrihodCancel.TabIndex = 12;
-            this.tilPrihodCancel.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.Error;
+            this.tilPrihodCancel.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.logout256_24927;
             this.tilPrihodCancel.UseSelectable = true;
             this.tilPrihodCancel.UseTileImage = true;
             this.tilPrihodCancel.Click += new System.EventHandler(this.tilPrihodCancel_Click);
@@ -311,7 +413,7 @@
             // chkBoxPrihodMulti
             // 
             this.chkBoxPrihodMulti.AutoSize = true;
-            this.chkBoxPrihodMulti.Location = new System.Drawing.Point(3, 306);
+            this.chkBoxPrihodMulti.Location = new System.Drawing.Point(3, 328);
             this.chkBoxPrihodMulti.Name = "chkBoxPrihodMulti";
             this.chkBoxPrihodMulti.Size = new System.Drawing.Size(182, 15);
             this.chkBoxPrihodMulti.TabIndex = 11;
@@ -323,11 +425,11 @@
             this.tilPrihodAddInGrid.ActiveControl = null;
             this.tilPrihodAddInGrid.Location = new System.Drawing.Point(188, 363);
             this.tilPrihodAddInGrid.Name = "tilPrihodAddInGrid";
-            this.tilPrihodAddInGrid.Size = new System.Drawing.Size(37, 34);
+            this.tilPrihodAddInGrid.Size = new System.Drawing.Size(31, 31);
             this.tilPrihodAddInGrid.Style = MetroFramework.MetroColorStyle.White;
             this.tilPrihodAddInGrid.TabIndex = 7;
             this.tilPrihodAddInGrid.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.tilPrihodAddInGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.Add;
+            this.tilPrihodAddInGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document_1_;
             this.tilPrihodAddInGrid.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tilPrihodAddInGrid.UseSelectable = true;
             this.tilPrihodAddInGrid.UseTileImage = true;
@@ -336,12 +438,12 @@
             // tilPrihodCancelInGrid
             // 
             this.tilPrihodCancelInGrid.ActiveControl = null;
-            this.tilPrihodCancelInGrid.Location = new System.Drawing.Point(151, 366);
+            this.tilPrihodCancelInGrid.Location = new System.Drawing.Point(151, 363);
             this.tilPrihodCancelInGrid.Name = "tilPrihodCancelInGrid";
             this.tilPrihodCancelInGrid.Size = new System.Drawing.Size(31, 31);
             this.tilPrihodCancelInGrid.Style = MetroFramework.MetroColorStyle.White;
             this.tilPrihodCancelInGrid.TabIndex = 9;
-            this.tilPrihodCancelInGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.Error;
+            this.tilPrihodCancelInGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document;
             this.tilPrihodCancelInGrid.UseSelectable = true;
             this.tilPrihodCancelInGrid.UseTileImage = true;
             this.tilPrihodCancelInGrid.Click += new System.EventHandler(this.tilPrihodCancelInGrid_Click);
@@ -355,7 +457,7 @@
             this.tilPrihodAddInBase.Size = new System.Drawing.Size(31, 31);
             this.tilPrihodAddInBase.Style = MetroFramework.MetroColorStyle.White;
             this.tilPrihodAddInBase.TabIndex = 8;
-            this.tilPrihodAddInBase.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.Valid;
+            this.tilPrihodAddInBase.TileImage = global::ITRSTool_Metro_UI.Properties.Resources._04;
             this.tilPrihodAddInBase.UseSelectable = true;
             this.tilPrihodAddInBase.UseTileImage = true;
             this.tilPrihodAddInBase.Click += new System.EventHandler(this.tilPrihodAddInBase_Click);
@@ -363,7 +465,7 @@
             // lblPrihodCostDelivery
             // 
             this.lblPrihodCostDelivery.AutoSize = true;
-            this.lblPrihodCostDelivery.Location = new System.Drawing.Point(3, 255);
+            this.lblPrihodCostDelivery.Location = new System.Drawing.Point(3, 271);
             this.lblPrihodCostDelivery.Name = "lblPrihodCostDelivery";
             this.lblPrihodCostDelivery.Size = new System.Drawing.Size(73, 19);
             this.lblPrihodCostDelivery.TabIndex = 10;
@@ -375,16 +477,16 @@
             // 
             // 
             this.txtPrihodCostDelivery.CustomButton.Image = null;
-            this.txtPrihodCostDelivery.CustomButton.Location = new System.Drawing.Point(202, 1);
+            this.txtPrihodCostDelivery.CustomButton.Location = new System.Drawing.Point(196, 1);
             this.txtPrihodCostDelivery.CustomButton.Name = "";
-            this.txtPrihodCostDelivery.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtPrihodCostDelivery.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.txtPrihodCostDelivery.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPrihodCostDelivery.CustomButton.TabIndex = 1;
             this.txtPrihodCostDelivery.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtPrihodCostDelivery.CustomButton.UseSelectable = true;
             this.txtPrihodCostDelivery.CustomButton.Visible = false;
             this.txtPrihodCostDelivery.Lines = new string[0];
-            this.txtPrihodCostDelivery.Location = new System.Drawing.Point(3, 277);
+            this.txtPrihodCostDelivery.Location = new System.Drawing.Point(3, 293);
             this.txtPrihodCostDelivery.MaxLength = 32767;
             this.txtPrihodCostDelivery.Name = "txtPrihodCostDelivery";
             this.txtPrihodCostDelivery.PasswordChar = '\0';
@@ -393,12 +495,12 @@
             this.txtPrihodCostDelivery.SelectionLength = 0;
             this.txtPrihodCostDelivery.SelectionStart = 0;
             this.txtPrihodCostDelivery.ShortcutsEnabled = true;
-            this.txtPrihodCostDelivery.Size = new System.Drawing.Size(224, 23);
+            this.txtPrihodCostDelivery.Size = new System.Drawing.Size(224, 29);
             this.txtPrihodCostDelivery.TabIndex = 6;
             this.txtPrihodCostDelivery.UseSelectable = true;
             this.txtPrihodCostDelivery.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPrihodCostDelivery.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtPrihodCostDelivery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrihodCostDelivery_Click);
+            this.txtPrihodCostDelivery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleCheck_Click);
             // 
             // txtPrihodAmountDelivery
             // 
@@ -406,16 +508,16 @@
             // 
             // 
             this.txtPrihodAmountDelivery.CustomButton.Image = null;
-            this.txtPrihodAmountDelivery.CustomButton.Location = new System.Drawing.Point(202, 1);
+            this.txtPrihodAmountDelivery.CustomButton.Location = new System.Drawing.Point(196, 1);
             this.txtPrihodAmountDelivery.CustomButton.Name = "";
-            this.txtPrihodAmountDelivery.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtPrihodAmountDelivery.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.txtPrihodAmountDelivery.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPrihodAmountDelivery.CustomButton.TabIndex = 1;
             this.txtPrihodAmountDelivery.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtPrihodAmountDelivery.CustomButton.UseSelectable = true;
             this.txtPrihodAmountDelivery.CustomButton.Visible = false;
             this.txtPrihodAmountDelivery.Lines = new string[0];
-            this.txtPrihodAmountDelivery.Location = new System.Drawing.Point(3, 229);
+            this.txtPrihodAmountDelivery.Location = new System.Drawing.Point(3, 239);
             this.txtPrihodAmountDelivery.MaxLength = 32767;
             this.txtPrihodAmountDelivery.Name = "txtPrihodAmountDelivery";
             this.txtPrihodAmountDelivery.PasswordChar = '\0';
@@ -424,17 +526,17 @@
             this.txtPrihodAmountDelivery.SelectionLength = 0;
             this.txtPrihodAmountDelivery.SelectionStart = 0;
             this.txtPrihodAmountDelivery.ShortcutsEnabled = true;
-            this.txtPrihodAmountDelivery.Size = new System.Drawing.Size(224, 23);
+            this.txtPrihodAmountDelivery.Size = new System.Drawing.Size(224, 29);
             this.txtPrihodAmountDelivery.TabIndex = 5;
             this.txtPrihodAmountDelivery.UseSelectable = true;
             this.txtPrihodAmountDelivery.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPrihodAmountDelivery.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtPrihodAmountDelivery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrihodAmountDelivery_KeyPress);
+            this.txtPrihodAmountDelivery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntCheckClick);
             // 
             // lblPrihodAmountDelivery
             // 
             this.lblPrihodAmountDelivery.AutoSize = true;
-            this.lblPrihodAmountDelivery.Location = new System.Drawing.Point(3, 207);
+            this.lblPrihodAmountDelivery.Location = new System.Drawing.Point(3, 219);
             this.lblPrihodAmountDelivery.Name = "lblPrihodAmountDelivery";
             this.lblPrihodAmountDelivery.Size = new System.Drawing.Size(79, 19);
             this.lblPrihodAmountDelivery.TabIndex = 10;
@@ -446,16 +548,16 @@
             // 
             // 
             this.txtPrihodNumDelivery.CustomButton.Image = null;
-            this.txtPrihodNumDelivery.CustomButton.Location = new System.Drawing.Point(202, 1);
+            this.txtPrihodNumDelivery.CustomButton.Location = new System.Drawing.Point(196, 1);
             this.txtPrihodNumDelivery.CustomButton.Name = "";
-            this.txtPrihodNumDelivery.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtPrihodNumDelivery.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.txtPrihodNumDelivery.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPrihodNumDelivery.CustomButton.TabIndex = 1;
             this.txtPrihodNumDelivery.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtPrihodNumDelivery.CustomButton.UseSelectable = true;
             this.txtPrihodNumDelivery.CustomButton.Visible = false;
             this.txtPrihodNumDelivery.Lines = new string[0];
-            this.txtPrihodNumDelivery.Location = new System.Drawing.Point(3, 181);
+            this.txtPrihodNumDelivery.Location = new System.Drawing.Point(3, 187);
             this.txtPrihodNumDelivery.MaxLength = 32767;
             this.txtPrihodNumDelivery.Name = "txtPrihodNumDelivery";
             this.txtPrihodNumDelivery.PasswordChar = '\0';
@@ -464,7 +566,7 @@
             this.txtPrihodNumDelivery.SelectionLength = 0;
             this.txtPrihodNumDelivery.SelectionStart = 0;
             this.txtPrihodNumDelivery.ShortcutsEnabled = true;
-            this.txtPrihodNumDelivery.Size = new System.Drawing.Size(224, 23);
+            this.txtPrihodNumDelivery.Size = new System.Drawing.Size(224, 29);
             this.txtPrihodNumDelivery.TabIndex = 4;
             this.txtPrihodNumDelivery.UseSelectable = true;
             this.txtPrihodNumDelivery.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -473,7 +575,7 @@
             // lblPrihodNumDelivery
             // 
             this.lblPrihodNumDelivery.AutoSize = true;
-            this.lblPrihodNumDelivery.Location = new System.Drawing.Point(3, 159);
+            this.lblPrihodNumDelivery.Location = new System.Drawing.Point(3, 165);
             this.lblPrihodNumDelivery.Name = "lblPrihodNumDelivery";
             this.lblPrihodNumDelivery.Size = new System.Drawing.Size(120, 19);
             this.lblPrihodNumDelivery.TabIndex = 10;
@@ -482,7 +584,7 @@
             // lblPrihodDelivery
             // 
             this.lblPrihodDelivery.AutoSize = true;
-            this.lblPrihodDelivery.Location = new System.Drawing.Point(3, 105);
+            this.lblPrihodDelivery.Location = new System.Drawing.Point(3, 111);
             this.lblPrihodDelivery.Name = "lblPrihodDelivery";
             this.lblPrihodDelivery.Size = new System.Drawing.Size(107, 19);
             this.lblPrihodDelivery.TabIndex = 10;
@@ -499,8 +601,8 @@
             // 
             // datPrihodDelivery
             // 
-            this.datPrihodDelivery.Location = new System.Drawing.Point(3, 127);
-            this.datPrihodDelivery.MinimumSize = new System.Drawing.Size(0, 29);
+            this.datPrihodDelivery.Location = new System.Drawing.Point(3, 133);
+            this.datPrihodDelivery.MinimumSize = new System.Drawing.Size(4, 29);
             this.datPrihodDelivery.Name = "datPrihodDelivery";
             this.datPrihodDelivery.Size = new System.Drawing.Size(224, 29);
             this.datPrihodDelivery.TabIndex = 3;
@@ -530,9 +632,9 @@
             // 
             // 
             this.txtPrihodSPartsInDelivery.CustomButton.Image = null;
-            this.txtPrihodSPartsInDelivery.CustomButton.Location = new System.Drawing.Point(202, 1);
+            this.txtPrihodSPartsInDelivery.CustomButton.Location = new System.Drawing.Point(196, 1);
             this.txtPrihodSPartsInDelivery.CustomButton.Name = "";
-            this.txtPrihodSPartsInDelivery.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtPrihodSPartsInDelivery.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.txtPrihodSPartsInDelivery.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtPrihodSPartsInDelivery.CustomButton.TabIndex = 1;
             this.txtPrihodSPartsInDelivery.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -548,7 +650,7 @@
             this.txtPrihodSPartsInDelivery.SelectionLength = 0;
             this.txtPrihodSPartsInDelivery.SelectionStart = 0;
             this.txtPrihodSPartsInDelivery.ShortcutsEnabled = true;
-            this.txtPrihodSPartsInDelivery.Size = new System.Drawing.Size(224, 23);
+            this.txtPrihodSPartsInDelivery.Size = new System.Drawing.Size(224, 29);
             this.txtPrihodSPartsInDelivery.TabIndex = 2;
             this.txtPrihodSPartsInDelivery.UseSelectable = true;
             this.txtPrihodSPartsInDelivery.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -565,14 +667,14 @@
             this.gridPrihod.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridPrihod.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.gridPrihod.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPrihod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPrihod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.gridPrihod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPrihod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmNameInBase,
@@ -581,28 +683,28 @@
             this.clmNumInvoce,
             this.clmAmount,
             this.clmCost});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridPrihod.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridPrihod.DefaultCellStyle = dataGridViewCellStyle38;
             this.gridPrihod.EnableHeadersVisualStyles = false;
             this.gridPrihod.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridPrihod.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridPrihod.Location = new System.Drawing.Point(233, 3);
             this.gridPrihod.Name = "gridPrihod";
             this.gridPrihod.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPrihod.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPrihod.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
             this.gridPrihod.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridPrihod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridPrihod.Size = new System.Drawing.Size(819, 368);
@@ -642,14 +744,13 @@
             // 
             this.panChangePass.Controls.Add(this.tilChangePassCancel);
             this.panChangePass.Controls.Add(this.tilChangePassAccept);
-            this.panChangePass.Controls.Add(this.metroLink1);
             this.panChangePass.Controls.Add(this.pictureBox3);
             this.panChangePass.Controls.Add(this.txtChangePassFirstConfirm);
             this.panChangePass.Controls.Add(this.txtChangePassFirst);
             this.panChangePass.HorizontalScrollbarBarColor = true;
             this.panChangePass.HorizontalScrollbarHighlightOnWheel = false;
             this.panChangePass.HorizontalScrollbarSize = 10;
-            this.panChangePass.Location = new System.Drawing.Point(659, 32);
+            this.panChangePass.Location = new System.Drawing.Point(213, 32);
             this.panChangePass.Name = "panChangePass";
             this.panChangePass.Size = new System.Drawing.Size(10, 10);
             this.panChangePass.TabIndex = 13;
@@ -683,15 +784,6 @@
             this.tilChangePassAccept.UseSelectable = true;
             this.tilChangePassAccept.UseTileImage = true;
             this.tilChangePassAccept.Click += new System.EventHandler(this.tilChangePassAccept_Click);
-            // 
-            // metroLink1
-            // 
-            this.metroLink1.Location = new System.Drawing.Point(89, 3);
-            this.metroLink1.Name = "metroLink1";
-            this.metroLink1.Size = new System.Drawing.Size(117, 23);
-            this.metroLink1.TabIndex = 5;
-            this.metroLink1.Text = "Смена пароля";
-            this.metroLink1.UseSelectable = true;
             // 
             // pictureBox3
             // 
@@ -768,37 +860,905 @@
             this.txtChangePassFirst.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtChangePassFirst.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // pictureBox2
+            // panSPartsPrihod
             // 
-            this.pictureBox2.Image = global::ITRSTool_Metro_UI.Properties.Resources.administrator_small;
-            this.pictureBox2.Location = new System.Drawing.Point(210, 35);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.panSPartsPrihod.Controls.Add(this.tilSPartPrihodDeleteFromGrid);
+            this.panSPartsPrihod.Controls.Add(this.tilSPartPrihodAddToGrid);
+            this.panSPartsPrihod.Controls.Add(this.tilSPartPrihodCancel);
+            this.panSPartsPrihod.Controls.Add(this.tilSPartPrihodAddToBase);
+            this.panSPartsPrihod.Controls.Add(this.gridSPartPrihod);
+            this.panSPartsPrihod.Controls.Add(this.lblSPartPrihodAmount);
+            this.panSPartsPrihod.Controls.Add(this.cmbSPartPrihod);
+            this.panSPartsPrihod.Controls.Add(this.txtSPartPrihod);
+            this.panSPartsPrihod.Controls.Add(this.lblSPartPrihodCombo);
+            this.panSPartsPrihod.HorizontalScrollbarBarColor = true;
+            this.panSPartsPrihod.HorizontalScrollbarHighlightOnWheel = false;
+            this.panSPartsPrihod.HorizontalScrollbarSize = 10;
+            this.panSPartsPrihod.Location = new System.Drawing.Point(245, 32);
+            this.panSPartsPrihod.Name = "panSPartsPrihod";
+            this.panSPartsPrihod.Size = new System.Drawing.Size(10, 10);
+            this.panSPartsPrihod.TabIndex = 14;
+            this.panSPartsPrihod.VerticalScrollbarBarColor = true;
+            this.panSPartsPrihod.VerticalScrollbarHighlightOnWheel = false;
+            this.panSPartsPrihod.VerticalScrollbarSize = 10;
+            this.panSPartsPrihod.Visible = false;
             // 
-            // pictureBox1
+            // tilSPartPrihodDeleteFromGrid
             // 
-            this.pictureBox1.Image = global::ITRSTool_Metro_UI.Properties.Resources.cloud;
-            this.pictureBox1.Location = new System.Drawing.Point(411, 36);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(15, 15);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.tilSPartPrihodDeleteFromGrid.ActiveControl = null;
+            this.tilSPartPrihodDeleteFromGrid.Location = new System.Drawing.Point(212, 127);
+            this.tilSPartPrihodDeleteFromGrid.Name = "tilSPartPrihodDeleteFromGrid";
+            this.tilSPartPrihodDeleteFromGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilSPartPrihodDeleteFromGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSPartPrihodDeleteFromGrid.TabIndex = 10;
+            this.tilSPartPrihodDeleteFromGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document;
+            this.tilSPartPrihodDeleteFromGrid.UseSelectable = true;
+            this.tilSPartPrihodDeleteFromGrid.UseTileImage = true;
+            this.tilSPartPrihodDeleteFromGrid.Click += new System.EventHandler(this.tilSPartPrihodDeleteFromGrid_Click);
+            // 
+            // tilSPartPrihodAddToGrid
+            // 
+            this.tilSPartPrihodAddToGrid.ActiveControl = null;
+            this.tilSPartPrihodAddToGrid.Location = new System.Drawing.Point(250, 127);
+            this.tilSPartPrihodAddToGrid.Name = "tilSPartPrihodAddToGrid";
+            this.tilSPartPrihodAddToGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilSPartPrihodAddToGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSPartPrihodAddToGrid.TabIndex = 9;
+            this.tilSPartPrihodAddToGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document_1_;
+            this.tilSPartPrihodAddToGrid.UseSelectable = true;
+            this.tilSPartPrihodAddToGrid.UseTileImage = true;
+            this.tilSPartPrihodAddToGrid.Click += new System.EventHandler(this.tilSPartPrihodAddToGrid_Click);
+            // 
+            // tilSPartPrihodCancel
+            // 
+            this.tilSPartPrihodCancel.ActiveControl = null;
+            this.tilSPartPrihodCancel.Location = new System.Drawing.Point(979, 400);
+            this.tilSPartPrihodCancel.Name = "tilSPartPrihodCancel";
+            this.tilSPartPrihodCancel.Size = new System.Drawing.Size(32, 32);
+            this.tilSPartPrihodCancel.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSPartPrihodCancel.TabIndex = 8;
+            this.tilSPartPrihodCancel.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.logout256_24927;
+            this.tilSPartPrihodCancel.UseSelectable = true;
+            this.tilSPartPrihodCancel.UseTileImage = true;
+            this.tilSPartPrihodCancel.Click += new System.EventHandler(this.tilSPartPrihodCancel_Click);
+            // 
+            // tilSPartPrihodAddToBase
+            // 
+            this.tilSPartPrihodAddToBase.ActiveControl = null;
+            this.tilSPartPrihodAddToBase.Location = new System.Drawing.Point(1017, 398);
+            this.tilSPartPrihodAddToBase.Name = "tilSPartPrihodAddToBase";
+            this.tilSPartPrihodAddToBase.Size = new System.Drawing.Size(32, 32);
+            this.tilSPartPrihodAddToBase.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSPartPrihodAddToBase.TabIndex = 7;
+            this.tilSPartPrihodAddToBase.TileImage = global::ITRSTool_Metro_UI.Properties.Resources._04;
+            this.tilSPartPrihodAddToBase.UseSelectable = true;
+            this.tilSPartPrihodAddToBase.UseTileImage = true;
+            this.tilSPartPrihodAddToBase.Click += new System.EventHandler(this.tilSPartPrihodAddToBase_Click);
+            // 
+            // gridSPartPrihod
+            // 
+            this.gridSPartPrihod.AllowUserToAddRows = false;
+            this.gridSPartPrihod.AllowUserToDeleteRows = false;
+            this.gridSPartPrihod.AllowUserToResizeColumns = false;
+            this.gridSPartPrihod.AllowUserToResizeRows = false;
+            this.gridSPartPrihod.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridSPartPrihod.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.gridSPartPrihod.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridSPartPrihod.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridSPartPrihod.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gridSPartPrihod.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSPartPrihod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            this.gridSPartPrihod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridSPartPrihod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GridSPartSpart,
+            this.GridSPartAmount});
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSPartPrihod.DefaultCellStyle = dataGridViewCellStyle41;
+            this.gridSPartPrihod.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gridSPartPrihod.EnableHeadersVisualStyles = false;
+            this.gridSPartPrihod.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridSPartPrihod.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridSPartPrihod.Location = new System.Drawing.Point(294, 0);
+            this.gridSPartPrihod.Name = "gridSPartPrihod";
+            this.gridSPartPrihod.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSPartPrihod.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
+            this.gridSPartPrihod.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridSPartPrihod.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridSPartPrihod.Size = new System.Drawing.Size(764, 379);
+            this.gridSPartPrihod.TabIndex = 6;
+            // 
+            // GridSPartSpart
+            // 
+            this.GridSPartSpart.HeaderText = "Комплектующая";
+            this.GridSPartSpart.Name = "GridSPartSpart";
+            // 
+            // GridSPartAmount
+            // 
+            this.GridSPartAmount.HeaderText = "Количество";
+            this.GridSPartAmount.Name = "GridSPartAmount";
+            // 
+            // lblSPartPrihodAmount
+            // 
+            this.lblSPartPrihodAmount.AutoSize = true;
+            this.lblSPartPrihodAmount.Location = new System.Drawing.Point(3, 62);
+            this.lblSPartPrihodAmount.Name = "lblSPartPrihodAmount";
+            this.lblSPartPrihodAmount.Size = new System.Drawing.Size(79, 19);
+            this.lblSPartPrihodAmount.TabIndex = 5;
+            this.lblSPartPrihodAmount.Text = "Количество";
+            // 
+            // cmbSPartPrihod
+            // 
+            this.cmbSPartPrihod.FormattingEnabled = true;
+            this.cmbSPartPrihod.ItemHeight = 23;
+            this.cmbSPartPrihod.Location = new System.Drawing.Point(3, 30);
+            this.cmbSPartPrihod.Name = "cmbSPartPrihod";
+            this.cmbSPartPrihod.Size = new System.Drawing.Size(279, 29);
+            this.cmbSPartPrihod.TabIndex = 4;
+            this.cmbSPartPrihod.UseSelectable = true;
+            // 
+            // txtSPartPrihod
+            // 
+            // 
+            // 
+            // 
+            this.txtSPartPrihod.CustomButton.Image = null;
+            this.txtSPartPrihod.CustomButton.Location = new System.Drawing.Point(251, 1);
+            this.txtSPartPrihod.CustomButton.Name = "";
+            this.txtSPartPrihod.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtSPartPrihod.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSPartPrihod.CustomButton.TabIndex = 1;
+            this.txtSPartPrihod.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSPartPrihod.CustomButton.UseSelectable = true;
+            this.txtSPartPrihod.CustomButton.Visible = false;
+            this.txtSPartPrihod.Lines = new string[0];
+            this.txtSPartPrihod.Location = new System.Drawing.Point(3, 84);
+            this.txtSPartPrihod.MaxLength = 32767;
+            this.txtSPartPrihod.Name = "txtSPartPrihod";
+            this.txtSPartPrihod.PasswordChar = '\0';
+            this.txtSPartPrihod.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSPartPrihod.SelectedText = "";
+            this.txtSPartPrihod.SelectionLength = 0;
+            this.txtSPartPrihod.SelectionStart = 0;
+            this.txtSPartPrihod.ShortcutsEnabled = true;
+            this.txtSPartPrihod.Size = new System.Drawing.Size(279, 29);
+            this.txtSPartPrihod.TabIndex = 3;
+            this.txtSPartPrihod.UseSelectable = true;
+            this.txtSPartPrihod.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSPartPrihod.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSPartPrihod.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntCheckClick);
+            // 
+            // lblSPartPrihodCombo
+            // 
+            this.lblSPartPrihodCombo.AutoSize = true;
+            this.lblSPartPrihodCombo.Location = new System.Drawing.Point(3, 8);
+            this.lblSPartPrihodCombo.Name = "lblSPartPrihodCombo";
+            this.lblSPartPrihodCombo.Size = new System.Drawing.Size(108, 19);
+            this.lblSPartPrihodCombo.TabIndex = 2;
+            this.lblSPartPrihodCombo.Text = "Комплектующая";
+            // 
+            // pbMainFormLogin
+            // 
+            this.pbMainFormLogin.Image = global::ITRSTool_Metro_UI.Properties.Resources.administrator_small;
+            this.pbMainFormLogin.Location = new System.Drawing.Point(673, 38);
+            this.pbMainFormLogin.Name = "pbMainFormLogin";
+            this.pbMainFormLogin.Size = new System.Drawing.Size(16, 16);
+            this.pbMainFormLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbMainFormLogin.TabIndex = 6;
+            this.pbMainFormLogin.TabStop = false;
+            // 
+            // pbMainFormGroup
+            // 
+            this.pbMainFormGroup.Image = global::ITRSTool_Metro_UI.Properties.Resources.cloud;
+            this.pbMainFormGroup.Location = new System.Drawing.Point(862, 39);
+            this.pbMainFormGroup.Name = "pbMainFormGroup";
+            this.pbMainFormGroup.Size = new System.Drawing.Size(15, 15);
+            this.pbMainFormGroup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbMainFormGroup.TabIndex = 1;
+            this.pbMainFormGroup.TabStop = false;
+            // 
+            // panSkladTrans
+            // 
+            this.panSkladTrans.Controls.Add(this.tilSkladTransSaveToBase);
+            this.panSkladTrans.Controls.Add(this.tilSkladTransCloseForm);
+            this.panSkladTrans.Controls.Add(this.tilSkladTransDeleteFromGrid);
+            this.panSkladTrans.Controls.Add(this.tilSkladTransAddToGrid);
+            this.panSkladTrans.Controls.Add(this.gridSkladTrans);
+            this.panSkladTrans.Controls.Add(this.txtSkladTransAmount);
+            this.panSkladTrans.Controls.Add(this.lblSkladTransAmount);
+            this.panSkladTrans.Controls.Add(this.cmbSkladTransSPartName);
+            this.panSkladTrans.Controls.Add(this.lblSkladTransSPartName);
+            this.panSkladTrans.Controls.Add(this.cmbSkladTransSkladSelect);
+            this.panSkladTrans.Controls.Add(this.lblSkladTransCombo);
+            this.panSkladTrans.Controls.Add(this.rbSkladTransSPartSelection);
+            this.panSkladTrans.Controls.Add(this.rbSkladTransPDTSelection);
+            this.panSkladTrans.HorizontalScrollbarBarColor = true;
+            this.panSkladTrans.HorizontalScrollbarHighlightOnWheel = false;
+            this.panSkladTrans.HorizontalScrollbarSize = 10;
+            this.panSkladTrans.Location = new System.Drawing.Point(261, 32);
+            this.panSkladTrans.Name = "panSkladTrans";
+            this.panSkladTrans.Size = new System.Drawing.Size(10, 10);
+            this.panSkladTrans.TabIndex = 15;
+            this.panSkladTrans.VerticalScrollbarBarColor = true;
+            this.panSkladTrans.VerticalScrollbarHighlightOnWheel = false;
+            this.panSkladTrans.VerticalScrollbarSize = 10;
+            // 
+            // tilSkladTransSaveToBase
+            // 
+            this.tilSkladTransSaveToBase.ActiveControl = null;
+            this.tilSkladTransSaveToBase.Location = new System.Drawing.Point(1016, 395);
+            this.tilSkladTransSaveToBase.Name = "tilSkladTransSaveToBase";
+            this.tilSkladTransSaveToBase.Size = new System.Drawing.Size(32, 32);
+            this.tilSkladTransSaveToBase.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSkladTransSaveToBase.TabIndex = 10;
+            this.tilSkladTransSaveToBase.TileImage = global::ITRSTool_Metro_UI.Properties.Resources._04;
+            this.tilSkladTransSaveToBase.UseSelectable = true;
+            this.tilSkladTransSaveToBase.UseTileImage = true;
+            // 
+            // tilSkladTransCloseForm
+            // 
+            this.tilSkladTransCloseForm.ActiveControl = null;
+            this.tilSkladTransCloseForm.Location = new System.Drawing.Point(978, 398);
+            this.tilSkladTransCloseForm.Name = "tilSkladTransCloseForm";
+            this.tilSkladTransCloseForm.Size = new System.Drawing.Size(32, 32);
+            this.tilSkladTransCloseForm.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSkladTransCloseForm.TabIndex = 10;
+            this.tilSkladTransCloseForm.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.logout256_24927;
+            this.tilSkladTransCloseForm.UseSelectable = true;
+            this.tilSkladTransCloseForm.UseTileImage = true;
+            // 
+            // tilSkladTransDeleteFromGrid
+            // 
+            this.tilSkladTransDeleteFromGrid.ActiveControl = null;
+            this.tilSkladTransDeleteFromGrid.Location = new System.Drawing.Point(205, 219);
+            this.tilSkladTransDeleteFromGrid.Name = "tilSkladTransDeleteFromGrid";
+            this.tilSkladTransDeleteFromGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilSkladTransDeleteFromGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSkladTransDeleteFromGrid.TabIndex = 10;
+            this.tilSkladTransDeleteFromGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document;
+            this.tilSkladTransDeleteFromGrid.UseSelectable = true;
+            this.tilSkladTransDeleteFromGrid.UseTileImage = true;
+            // 
+            // tilSkladTransAddToGrid
+            // 
+            this.tilSkladTransAddToGrid.ActiveControl = null;
+            this.tilSkladTransAddToGrid.Location = new System.Drawing.Point(243, 219);
+            this.tilSkladTransAddToGrid.Name = "tilSkladTransAddToGrid";
+            this.tilSkladTransAddToGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilSkladTransAddToGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilSkladTransAddToGrid.TabIndex = 10;
+            this.tilSkladTransAddToGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document_1_;
+            this.tilSkladTransAddToGrid.UseSelectable = true;
+            this.tilSkladTransAddToGrid.UseTileImage = true;
+            // 
+            // gridSkladTrans
+            // 
+            this.gridSkladTrans.AllowUserToAddRows = false;
+            this.gridSkladTrans.AllowUserToDeleteRows = false;
+            this.gridSkladTrans.AllowUserToResizeColumns = false;
+            this.gridSkladTrans.AllowUserToResizeRows = false;
+            this.gridSkladTrans.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridSkladTrans.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.gridSkladTrans.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridSkladTrans.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridSkladTrans.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gridSkladTrans.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSkladTrans.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
+            this.gridSkladTrans.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridSkladTrans.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmSkladTransSkladToTrans,
+            this.clmSkladTransSPartName,
+            this.clmSkladTransAmount});
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSkladTrans.DefaultCellStyle = dataGridViewCellStyle44;
+            this.gridSkladTrans.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gridSkladTrans.EnableHeadersVisualStyles = false;
+            this.gridSkladTrans.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridSkladTrans.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridSkladTrans.Location = new System.Drawing.Point(296, 3);
+            this.gridSkladTrans.Name = "gridSkladTrans";
+            this.gridSkladTrans.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSkladTrans.RowHeadersDefaultCellStyle = dataGridViewCellStyle45;
+            this.gridSkladTrans.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridSkladTrans.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridSkladTrans.Size = new System.Drawing.Size(765, 386);
+            this.gridSkladTrans.TabIndex = 9;
+            // 
+            // clmSkladTransSkladToTrans
+            // 
+            this.clmSkladTransSkladToTrans.HeaderText = "Склад";
+            this.clmSkladTransSkladToTrans.Name = "clmSkladTransSkladToTrans";
+            // 
+            // clmSkladTransSPartName
+            // 
+            this.clmSkladTransSPartName.HeaderText = "Наименование комплектующей";
+            this.clmSkladTransSPartName.Name = "clmSkladTransSPartName";
+            // 
+            // clmSkladTransAmount
+            // 
+            this.clmSkladTransAmount.HeaderText = "Количество";
+            this.clmSkladTransAmount.Name = "clmSkladTransAmount";
+            // 
+            // txtSkladTransAmount
+            // 
+            // 
+            // 
+            // 
+            this.txtSkladTransAmount.CustomButton.Image = null;
+            this.txtSkladTransAmount.CustomButton.Location = new System.Drawing.Point(244, 1);
+            this.txtSkladTransAmount.CustomButton.Name = "";
+            this.txtSkladTransAmount.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtSkladTransAmount.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSkladTransAmount.CustomButton.TabIndex = 1;
+            this.txtSkladTransAmount.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSkladTransAmount.CustomButton.UseSelectable = true;
+            this.txtSkladTransAmount.CustomButton.Visible = false;
+            this.txtSkladTransAmount.Lines = new string[0];
+            this.txtSkladTransAmount.Location = new System.Drawing.Point(3, 172);
+            this.txtSkladTransAmount.MaxLength = 32767;
+            this.txtSkladTransAmount.Name = "txtSkladTransAmount";
+            this.txtSkladTransAmount.PasswordChar = '\0';
+            this.txtSkladTransAmount.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSkladTransAmount.SelectedText = "";
+            this.txtSkladTransAmount.SelectionLength = 0;
+            this.txtSkladTransAmount.SelectionStart = 0;
+            this.txtSkladTransAmount.ShortcutsEnabled = true;
+            this.txtSkladTransAmount.Size = new System.Drawing.Size(272, 29);
+            this.txtSkladTransAmount.TabIndex = 8;
+            this.txtSkladTransAmount.UseSelectable = true;
+            this.txtSkladTransAmount.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSkladTransAmount.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSkladTransAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntCheckClick);
+            // 
+            // lblSkladTransAmount
+            // 
+            this.lblSkladTransAmount.AutoSize = true;
+            this.lblSkladTransAmount.Location = new System.Drawing.Point(3, 150);
+            this.lblSkladTransAmount.Name = "lblSkladTransAmount";
+            this.lblSkladTransAmount.Size = new System.Drawing.Size(79, 19);
+            this.lblSkladTransAmount.TabIndex = 7;
+            this.lblSkladTransAmount.Text = "Количество";
+            // 
+            // cmbSkladTransSPartName
+            // 
+            this.cmbSkladTransSPartName.FormattingEnabled = true;
+            this.cmbSkladTransSPartName.ItemHeight = 23;
+            this.cmbSkladTransSPartName.Location = new System.Drawing.Point(3, 118);
+            this.cmbSkladTransSPartName.Name = "cmbSkladTransSPartName";
+            this.cmbSkladTransSPartName.Size = new System.Drawing.Size(273, 29);
+            this.cmbSkladTransSPartName.TabIndex = 6;
+            this.cmbSkladTransSPartName.UseSelectable = true;
+            // 
+            // lblSkladTransSPartName
+            // 
+            this.lblSkladTransSPartName.AutoSize = true;
+            this.lblSkladTransSPartName.Location = new System.Drawing.Point(3, 96);
+            this.lblSkladTransSPartName.Name = "lblSkladTransSPartName";
+            this.lblSkladTransSPartName.Size = new System.Drawing.Size(205, 19);
+            this.lblSkladTransSPartName.TabIndex = 5;
+            this.lblSkladTransSPartName.Text = "Наименование комплектующей";
+            // 
+            // cmbSkladTransSkladSelect
+            // 
+            this.cmbSkladTransSkladSelect.FormattingEnabled = true;
+            this.cmbSkladTransSkladSelect.ItemHeight = 23;
+            this.cmbSkladTransSkladSelect.Location = new System.Drawing.Point(3, 64);
+            this.cmbSkladTransSkladSelect.Name = "cmbSkladTransSkladSelect";
+            this.cmbSkladTransSkladSelect.Size = new System.Drawing.Size(272, 29);
+            this.cmbSkladTransSkladSelect.TabIndex = 4;
+            this.cmbSkladTransSkladSelect.UseSelectable = true;
+            // 
+            // lblSkladTransCombo
+            // 
+            this.lblSkladTransCombo.AutoSize = true;
+            this.lblSkladTransCombo.Location = new System.Drawing.Point(3, 42);
+            this.lblSkladTransCombo.Name = "lblSkladTransCombo";
+            this.lblSkladTransCombo.Size = new System.Drawing.Size(272, 19);
+            this.lblSkladTransCombo.TabIndex = 3;
+            this.lblSkladTransCombo.Text = "Склад, куда пересылаются комплектующие";
+            // 
+            // rbSkladTransSPartSelection
+            // 
+            this.rbSkladTransSPartSelection.AutoSize = true;
+            this.rbSkladTransSPartSelection.Location = new System.Drawing.Point(3, 24);
+            this.rbSkladTransSPartSelection.Name = "rbSkladTransSPartSelection";
+            this.rbSkladTransSPartSelection.Size = new System.Drawing.Size(145, 15);
+            this.rbSkladTransSPartSelection.TabIndex = 2;
+            this.rbSkladTransSPartSelection.Text = "Расходники для пайки";
+            this.rbSkladTransSPartSelection.UseSelectable = true;
+            // 
+            // rbSkladTransPDTSelection
+            // 
+            this.rbSkladTransPDTSelection.AutoSize = true;
+            this.rbSkladTransPDTSelection.Location = new System.Drawing.Point(3, 6);
+            this.rbSkladTransPDTSelection.Name = "rbSkladTransPDTSelection";
+            this.rbSkladTransPDTSelection.Size = new System.Drawing.Size(152, 15);
+            this.rbSkladTransPDTSelection.TabIndex = 2;
+            this.rbSkladTransPDTSelection.Text = "Запчасти для PDT и etc.";
+            this.rbSkladTransPDTSelection.UseSelectable = true;
+            this.rbSkladTransPDTSelection.CheckedChanged += new System.EventHandler(this.rbSkladTransPDTSelection_CheckedChanged);
+            // 
+            // panRepair
+            // 
+            this.panRepair.Controls.Add(this.txtRepairDevInOperation);
+            this.panRepair.Controls.Add(this.lblRepairPerfWork);
+            this.panRepair.Controls.Add(this.tilRepairCancel);
+            this.panRepair.Controls.Add(this.tilRepairAddGrid);
+            this.panRepair.Controls.Add(this.tilRepairDeleteGrid);
+            this.panRepair.Controls.Add(this.tilRepairSave);
+            this.panRepair.Controls.Add(this.gridRepair);
+            this.panRepair.Controls.Add(this.chkRepairUsedAddSParts);
+            this.panRepair.Controls.Add(this.chkRepairFailureConfirmed);
+            this.panRepair.Controls.Add(this.txtRepairIncNumber);
+            this.panRepair.Controls.Add(this.txtRepairPerfWork);
+            this.panRepair.Controls.Add(this.txtRepairFailureName);
+            this.panRepair.Controls.Add(this.txtRepairInvNumber);
+            this.panRepair.Controls.Add(this.cmbRepairEquipment);
+            this.panRepair.Controls.Add(this.cmbRepairSParts);
+            this.panRepair.Controls.Add(this.cmbRepairSC);
+            this.panRepair.Controls.Add(this.lblRepairFailureName);
+            this.panRepair.Controls.Add(this.lblRepairIncNumber);
+            this.panRepair.Controls.Add(this.lblRepairInvNumber);
+            this.panRepair.Controls.Add(this.lblRepairEquipment);
+            this.panRepair.Controls.Add(this.metroLabel7);
+            this.panRepair.Controls.Add(this.lblRepairDevInOperation);
+            this.panRepair.Controls.Add(this.lblRepairSParts);
+            this.panRepair.Controls.Add(this.lblRepairSC);
+            this.panRepair.HorizontalScrollbarBarColor = true;
+            this.panRepair.HorizontalScrollbarHighlightOnWheel = false;
+            this.panRepair.HorizontalScrollbarSize = 10;
+            this.panRepair.Location = new System.Drawing.Point(20, 89);
+            this.panRepair.Name = "panRepair";
+            this.panRepair.Size = new System.Drawing.Size(1064, 438);
+            this.panRepair.TabIndex = 16;
+            this.panRepair.VerticalScrollbarBarColor = true;
+            this.panRepair.VerticalScrollbarHighlightOnWheel = false;
+            this.panRepair.VerticalScrollbarSize = 10;
+            // 
+            // txtRepairDevInOperation
+            // 
+            // 
+            // 
+            // 
+            this.txtRepairDevInOperation.CustomButton.Image = null;
+            this.txtRepairDevInOperation.CustomButton.Location = new System.Drawing.Point(93, 1);
+            this.txtRepairDevInOperation.CustomButton.Name = "";
+            this.txtRepairDevInOperation.CustomButton.Size = new System.Drawing.Size(245, 245);
+            this.txtRepairDevInOperation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRepairDevInOperation.CustomButton.TabIndex = 1;
+            this.txtRepairDevInOperation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRepairDevInOperation.CustomButton.UseSelectable = true;
+            this.txtRepairDevInOperation.CustomButton.Visible = false;
+            this.txtRepairDevInOperation.Lines = new string[0];
+            this.txtRepairDevInOperation.Location = new System.Drawing.Point(313, 27);
+            this.txtRepairDevInOperation.MaxLength = 32767;
+            this.txtRepairDevInOperation.Multiline = true;
+            this.txtRepairDevInOperation.Name = "txtRepairDevInOperation";
+            this.txtRepairDevInOperation.PasswordChar = '\0';
+            this.txtRepairDevInOperation.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRepairDevInOperation.SelectedText = "";
+            this.txtRepairDevInOperation.SelectionLength = 0;
+            this.txtRepairDevInOperation.SelectionStart = 0;
+            this.txtRepairDevInOperation.ShortcutsEnabled = true;
+            this.txtRepairDevInOperation.Size = new System.Drawing.Size(339, 247);
+            this.txtRepairDevInOperation.TabIndex = 9;
+            this.txtRepairDevInOperation.UseSelectable = true;
+            this.txtRepairDevInOperation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRepairDevInOperation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // lblRepairPerfWork
+            // 
+            this.lblRepairPerfWork.AutoSize = true;
+            this.lblRepairPerfWork.Location = new System.Drawing.Point(3, 277);
+            this.lblRepairPerfWork.Name = "lblRepairPerfWork";
+            this.lblRepairPerfWork.Size = new System.Drawing.Size(145, 19);
+            this.lblRepairPerfWork.TabIndex = 8;
+            this.lblRepairPerfWork.Text = "Выполненные работы";
+            // 
+            // tilRepairCancel
+            // 
+            this.tilRepairCancel.ActiveControl = null;
+            this.tilRepairCancel.Location = new System.Drawing.Point(991, 398);
+            this.tilRepairCancel.Name = "tilRepairCancel";
+            this.tilRepairCancel.Size = new System.Drawing.Size(32, 32);
+            this.tilRepairCancel.Style = MetroFramework.MetroColorStyle.White;
+            this.tilRepairCancel.TabIndex = 7;
+            this.tilRepairCancel.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.logout256_24927;
+            this.tilRepairCancel.UseSelectable = true;
+            this.tilRepairCancel.UseTileImage = true;
+            // 
+            // tilRepairAddGrid
+            // 
+            this.tilRepairAddGrid.ActiveControl = null;
+            this.tilRepairAddGrid.Location = new System.Drawing.Point(619, 338);
+            this.tilRepairAddGrid.Name = "tilRepairAddGrid";
+            this.tilRepairAddGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilRepairAddGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilRepairAddGrid.TabIndex = 7;
+            this.tilRepairAddGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document_1_;
+            this.tilRepairAddGrid.UseSelectable = true;
+            this.tilRepairAddGrid.UseTileImage = true;
+            this.tilRepairAddGrid.Click += new System.EventHandler(this.tilRepairAddGrid_Click);
+            // 
+            // tilRepairDeleteGrid
+            // 
+            this.tilRepairDeleteGrid.ActiveControl = null;
+            this.tilRepairDeleteGrid.Location = new System.Drawing.Point(581, 338);
+            this.tilRepairDeleteGrid.Name = "tilRepairDeleteGrid";
+            this.tilRepairDeleteGrid.Size = new System.Drawing.Size(32, 32);
+            this.tilRepairDeleteGrid.Style = MetroFramework.MetroColorStyle.White;
+            this.tilRepairDeleteGrid.TabIndex = 7;
+            this.tilRepairDeleteGrid.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.document;
+            this.tilRepairDeleteGrid.UseSelectable = true;
+            this.tilRepairDeleteGrid.UseTileImage = true;
+            this.tilRepairDeleteGrid.Click += new System.EventHandler(this.tilRepairDeleteGrid_Click);
+            // 
+            // tilRepairSave
+            // 
+            this.tilRepairSave.ActiveControl = null;
+            this.tilRepairSave.Location = new System.Drawing.Point(1029, 396);
+            this.tilRepairSave.Name = "tilRepairSave";
+            this.tilRepairSave.Size = new System.Drawing.Size(32, 32);
+            this.tilRepairSave.Style = MetroFramework.MetroColorStyle.White;
+            this.tilRepairSave.TabIndex = 7;
+            this.tilRepairSave.TileImage = global::ITRSTool_Metro_UI.Properties.Resources._04;
+            this.tilRepairSave.UseSelectable = true;
+            this.tilRepairSave.UseTileImage = true;
+            this.tilRepairSave.Click += new System.EventHandler(this.tilRepairSave_Click);
+            // 
+            // gridRepair
+            // 
+            this.gridRepair.AllowUserToAddRows = false;
+            this.gridRepair.AllowUserToDeleteRows = false;
+            this.gridRepair.AllowUserToResizeColumns = false;
+            this.gridRepair.AllowUserToResizeRows = false;
+            this.gridRepair.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridRepair.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.gridRepair.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridRepair.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridRepair.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.gridRepair.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle46.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle46.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle46.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle46.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRepair.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle46;
+            this.gridRepair.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRepair.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmRepairSPartName});
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRepair.DefaultCellStyle = dataGridViewCellStyle47;
+            this.gridRepair.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gridRepair.EnableHeadersVisualStyles = false;
+            this.gridRepair.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridRepair.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridRepair.Location = new System.Drawing.Point(705, 16);
+            this.gridRepair.Name = "gridRepair";
+            this.gridRepair.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRepair.RowHeadersDefaultCellStyle = dataGridViewCellStyle48;
+            this.gridRepair.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridRepair.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridRepair.Size = new System.Drawing.Size(346, 150);
+            this.gridRepair.TabIndex = 6;
+            // 
+            // clmRepairSPartName
+            // 
+            this.clmRepairSPartName.HeaderText = "Использованная запчасть";
+            this.clmRepairSPartName.Name = "clmRepairSPartName";
+            // 
+            // chkRepairUsedAddSParts
+            // 
+            this.chkRepairUsedAddSParts.AutoSize = true;
+            this.chkRepairUsedAddSParts.Location = new System.Drawing.Point(3, 355);
+            this.chkRepairUsedAddSParts.Name = "chkRepairUsedAddSParts";
+            this.chkRepairUsedAddSParts.Size = new System.Drawing.Size(183, 15);
+            this.chkRepairUsedAddSParts.TabIndex = 5;
+            this.chkRepairUsedAddSParts.Text = "Использованы доп. запчасти";
+            this.chkRepairUsedAddSParts.UseSelectable = true;
+            // 
+            // chkRepairFailureConfirmed
+            // 
+            this.chkRepairFailureConfirmed.AutoSize = true;
+            this.chkRepairFailureConfirmed.Location = new System.Drawing.Point(3, 338);
+            this.chkRepairFailureConfirmed.Name = "chkRepairFailureConfirmed";
+            this.chkRepairFailureConfirmed.Size = new System.Drawing.Size(189, 15);
+            this.chkRepairFailureConfirmed.TabIndex = 5;
+            this.chkRepairFailureConfirmed.Text = "Неисправность подтверждена";
+            this.chkRepairFailureConfirmed.UseSelectable = true;
+            // 
+            // txtRepairIncNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtRepairIncNumber.CustomButton.Image = null;
+            this.txtRepairIncNumber.CustomButton.Location = new System.Drawing.Point(260, 1);
+            this.txtRepairIncNumber.CustomButton.Name = "";
+            this.txtRepairIncNumber.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtRepairIncNumber.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRepairIncNumber.CustomButton.TabIndex = 1;
+            this.txtRepairIncNumber.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRepairIncNumber.CustomButton.UseSelectable = true;
+            this.txtRepairIncNumber.CustomButton.Visible = false;
+            this.txtRepairIncNumber.Lines = new string[0];
+            this.txtRepairIncNumber.Location = new System.Drawing.Point(3, 191);
+            this.txtRepairIncNumber.MaxLength = 32767;
+            this.txtRepairIncNumber.Name = "txtRepairIncNumber";
+            this.txtRepairIncNumber.PasswordChar = '\0';
+            this.txtRepairIncNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRepairIncNumber.SelectedText = "";
+            this.txtRepairIncNumber.SelectionLength = 0;
+            this.txtRepairIncNumber.SelectionStart = 0;
+            this.txtRepairIncNumber.ShortcutsEnabled = true;
+            this.txtRepairIncNumber.Size = new System.Drawing.Size(288, 29);
+            this.txtRepairIncNumber.TabIndex = 4;
+            this.txtRepairIncNumber.UseSelectable = true;
+            this.txtRepairIncNumber.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRepairIncNumber.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtRepairIncNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumInc);
+            // 
+            // txtRepairPerfWork
+            // 
+            // 
+            // 
+            // 
+            this.txtRepairPerfWork.CustomButton.Image = null;
+            this.txtRepairPerfWork.CustomButton.Location = new System.Drawing.Point(260, 1);
+            this.txtRepairPerfWork.CustomButton.Name = "";
+            this.txtRepairPerfWork.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtRepairPerfWork.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRepairPerfWork.CustomButton.TabIndex = 1;
+            this.txtRepairPerfWork.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRepairPerfWork.CustomButton.UseSelectable = true;
+            this.txtRepairPerfWork.CustomButton.Visible = false;
+            this.txtRepairPerfWork.Lines = new string[0];
+            this.txtRepairPerfWork.Location = new System.Drawing.Point(3, 299);
+            this.txtRepairPerfWork.MaxLength = 32767;
+            this.txtRepairPerfWork.Name = "txtRepairPerfWork";
+            this.txtRepairPerfWork.PasswordChar = '\0';
+            this.txtRepairPerfWork.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRepairPerfWork.SelectedText = "";
+            this.txtRepairPerfWork.SelectionLength = 0;
+            this.txtRepairPerfWork.SelectionStart = 0;
+            this.txtRepairPerfWork.ShortcutsEnabled = true;
+            this.txtRepairPerfWork.Size = new System.Drawing.Size(288, 29);
+            this.txtRepairPerfWork.TabIndex = 4;
+            this.txtRepairPerfWork.UseSelectable = true;
+            this.txtRepairPerfWork.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRepairPerfWork.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtRepairFailureName
+            // 
+            // 
+            // 
+            // 
+            this.txtRepairFailureName.CustomButton.Image = null;
+            this.txtRepairFailureName.CustomButton.Location = new System.Drawing.Point(260, 1);
+            this.txtRepairFailureName.CustomButton.Name = "";
+            this.txtRepairFailureName.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtRepairFailureName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRepairFailureName.CustomButton.TabIndex = 1;
+            this.txtRepairFailureName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRepairFailureName.CustomButton.UseSelectable = true;
+            this.txtRepairFailureName.CustomButton.Visible = false;
+            this.txtRepairFailureName.Lines = new string[0];
+            this.txtRepairFailureName.Location = new System.Drawing.Point(3, 245);
+            this.txtRepairFailureName.MaxLength = 32767;
+            this.txtRepairFailureName.Name = "txtRepairFailureName";
+            this.txtRepairFailureName.PasswordChar = '\0';
+            this.txtRepairFailureName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRepairFailureName.SelectedText = "";
+            this.txtRepairFailureName.SelectionLength = 0;
+            this.txtRepairFailureName.SelectionStart = 0;
+            this.txtRepairFailureName.ShortcutsEnabled = true;
+            this.txtRepairFailureName.Size = new System.Drawing.Size(288, 29);
+            this.txtRepairFailureName.TabIndex = 4;
+            this.txtRepairFailureName.UseSelectable = true;
+            this.txtRepairFailureName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRepairFailureName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtRepairInvNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtRepairInvNumber.CustomButton.Image = null;
+            this.txtRepairInvNumber.CustomButton.Location = new System.Drawing.Point(260, 1);
+            this.txtRepairInvNumber.CustomButton.Name = "";
+            this.txtRepairInvNumber.CustomButton.Size = new System.Drawing.Size(27, 27);
+            this.txtRepairInvNumber.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRepairInvNumber.CustomButton.TabIndex = 1;
+            this.txtRepairInvNumber.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRepairInvNumber.CustomButton.UseSelectable = true;
+            this.txtRepairInvNumber.CustomButton.Visible = false;
+            this.txtRepairInvNumber.Lines = new string[0];
+            this.txtRepairInvNumber.Location = new System.Drawing.Point(3, 137);
+            this.txtRepairInvNumber.MaxLength = 32767;
+            this.txtRepairInvNumber.Name = "txtRepairInvNumber";
+            this.txtRepairInvNumber.PasswordChar = '\0';
+            this.txtRepairInvNumber.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRepairInvNumber.SelectedText = "";
+            this.txtRepairInvNumber.SelectionLength = 0;
+            this.txtRepairInvNumber.SelectionStart = 0;
+            this.txtRepairInvNumber.ShortcutsEnabled = true;
+            this.txtRepairInvNumber.Size = new System.Drawing.Size(288, 29);
+            this.txtRepairInvNumber.TabIndex = 4;
+            this.txtRepairInvNumber.UseSelectable = true;
+            this.txtRepairInvNumber.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRepairInvNumber.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtRepairInvNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntCheckClick);
+            // 
+            // cmbRepairEquipment
+            // 
+            this.cmbRepairEquipment.FormattingEnabled = true;
+            this.cmbRepairEquipment.ItemHeight = 23;
+            this.cmbRepairEquipment.Location = new System.Drawing.Point(3, 83);
+            this.cmbRepairEquipment.Name = "cmbRepairEquipment";
+            this.cmbRepairEquipment.Size = new System.Drawing.Size(288, 29);
+            this.cmbRepairEquipment.TabIndex = 3;
+            this.cmbRepairEquipment.UseSelectable = true;
+            // 
+            // cmbRepairSParts
+            // 
+            this.cmbRepairSParts.FormattingEnabled = true;
+            this.cmbRepairSParts.ItemHeight = 23;
+            this.cmbRepairSParts.Location = new System.Drawing.Point(313, 299);
+            this.cmbRepairSParts.Name = "cmbRepairSParts";
+            this.cmbRepairSParts.Size = new System.Drawing.Size(338, 29);
+            this.cmbRepairSParts.TabIndex = 3;
+            this.cmbRepairSParts.UseSelectable = true;
+            // 
+            // cmbRepairSC
+            // 
+            this.cmbRepairSC.FormattingEnabled = true;
+            this.cmbRepairSC.ItemHeight = 23;
+            this.cmbRepairSC.Location = new System.Drawing.Point(3, 27);
+            this.cmbRepairSC.Name = "cmbRepairSC";
+            this.cmbRepairSC.Size = new System.Drawing.Size(288, 29);
+            this.cmbRepairSC.TabIndex = 3;
+            this.cmbRepairSC.UseSelectable = true;
+            // 
+            // lblRepairFailureName
+            // 
+            this.lblRepairFailureName.AutoSize = true;
+            this.lblRepairFailureName.Location = new System.Drawing.Point(3, 223);
+            this.lblRepairFailureName.Name = "lblRepairFailureName";
+            this.lblRepairFailureName.Size = new System.Drawing.Size(178, 19);
+            this.lblRepairFailureName.TabIndex = 2;
+            this.lblRepairFailureName.Text = "Заявленная неисправность";
+            // 
+            // lblRepairIncNumber
+            // 
+            this.lblRepairIncNumber.AutoSize = true;
+            this.lblRepairIncNumber.Location = new System.Drawing.Point(3, 169);
+            this.lblRepairIncNumber.Name = "lblRepairIncNumber";
+            this.lblRepairIncNumber.Size = new System.Drawing.Size(120, 19);
+            this.lblRepairIncNumber.TabIndex = 2;
+            this.lblRepairIncNumber.Text = "Номер инцидента";
+            // 
+            // lblRepairInvNumber
+            // 
+            this.lblRepairInvNumber.AutoSize = true;
+            this.lblRepairInvNumber.Location = new System.Drawing.Point(3, 115);
+            this.lblRepairInvNumber.Name = "lblRepairInvNumber";
+            this.lblRepairInvNumber.Size = new System.Drawing.Size(138, 19);
+            this.lblRepairInvNumber.TabIndex = 2;
+            this.lblRepairInvNumber.Text = "Инвентарный номер";
+            // 
+            // lblRepairEquipment
+            // 
+            this.lblRepairEquipment.AutoSize = true;
+            this.lblRepairEquipment.Location = new System.Drawing.Point(3, 59);
+            this.lblRepairEquipment.Name = "lblRepairEquipment";
+            this.lblRepairEquipment.Size = new System.Drawing.Size(125, 19);
+            this.lblRepairEquipment.TabIndex = 2;
+            this.lblRepairEquipment.Text = "Тип оборудования";
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(653, 649);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel7.TabIndex = 2;
+            this.metroLabel7.Text = "metroLabel1";
+            // 
+            // lblRepairDevInOperation
+            // 
+            this.lblRepairDevInOperation.AutoSize = true;
+            this.lblRepairDevInOperation.Location = new System.Drawing.Point(313, 5);
+            this.lblRepairDevInOperation.Name = "lblRepairDevInOperation";
+            this.lblRepairDevInOperation.Size = new System.Drawing.Size(181, 19);
+            this.lblRepairDevInOperation.TabIndex = 2;
+            this.lblRepairDevInOperation.Text = "Отклонения в эксплуатации";
+            // 
+            // lblRepairSParts
+            // 
+            this.lblRepairSParts.AutoSize = true;
+            this.lblRepairSParts.Location = new System.Drawing.Point(313, 277);
+            this.lblRepairSParts.Name = "lblRepairSParts";
+            this.lblRepairSParts.Size = new System.Drawing.Size(172, 19);
+            this.lblRepairSParts.TabIndex = 2;
+            this.lblRepairSParts.Text = "Использованные запчасти";
+            // 
+            // lblRepairSC
+            // 
+            this.lblRepairSC.AutoSize = true;
+            this.lblRepairSC.Location = new System.Drawing.Point(3, 5);
+            this.lblRepairSC.Name = "lblRepairSC";
+            this.lblRepairSC.Size = new System.Drawing.Size(64, 19);
+            this.lblRepairSC.TabIndex = 2;
+            this.lblRepairSC.Text = "Заказчик";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1104, 540);
+            this.Controls.Add(this.panRepair);
+            this.Controls.Add(this.panSkladTrans);
+            this.Controls.Add(this.panSPartsPrihod);
             this.Controls.Add(this.panChangePass);
             this.Controls.Add(this.panPrihod);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pbMainFormLogin);
             this.Controls.Add(this.lblGroup);
             this.Controls.Add(this.lblLoginName);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbMainFormGroup);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -812,8 +1772,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridPrihod)).EndInit();
             this.panChangePass.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panSPartsPrihod.ResumeLayout(false);
+            this.panSPartsPrihod.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSPartPrihod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainFormLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMainFormGroup)).EndInit();
+            this.panSkladTrans.ResumeLayout(false);
+            this.panSkladTrans.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSkladTrans)).EndInit();
+            this.panRepair.ResumeLayout(false);
+            this.panRepair.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRepair)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -829,10 +1798,10 @@
         private System.Windows.Forms.ToolStripMenuItem бухУчетToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem админкаToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbMainFormGroup;
         private MetroFramework.Controls.MetroLabel lblLoginName;
         private MetroFramework.Controls.MetroLabel lblGroup;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pbMainFormLogin;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private MetroFramework.Controls.MetroPanel panPrihod;
         private System.Windows.Forms.ToolStripMenuItem запчастиДляТСДToolStripMenuItem;
@@ -874,8 +1843,64 @@
         private MetroFramework.Controls.MetroTextBox txtChangePassFirstConfirm;
         private MetroFramework.Controls.MetroTile tilChangePassCancel;
         private MetroFramework.Controls.MetroTile tilChangePassAccept;
-        private MetroFramework.Controls.MetroLink metroLink1;
         private MetroFramework.Controls.MetroCheckBox chkBoxPrihodMulti;
         private MetroFramework.Controls.MetroTile tilPrihodCancel;
+        private MetroFramework.Controls.MetroTile tilPrihodEditGrid;
+        private MetroFramework.Controls.MetroTile tilPrihodClearElem;
+        private MetroFramework.Controls.MetroPanel panSPartsPrihod;
+        private MetroFramework.Controls.MetroTile tilSPartPrihodDeleteFromGrid;
+        private MetroFramework.Controls.MetroTile tilSPartPrihodAddToGrid;
+        private MetroFramework.Controls.MetroTile tilSPartPrihodCancel;
+        private MetroFramework.Controls.MetroTile tilSPartPrihodAddToBase;
+        private MetroFramework.Controls.MetroGrid gridSPartPrihod;
+        private MetroFramework.Controls.MetroLabel lblSPartPrihodAmount;
+        private MetroFramework.Controls.MetroComboBox cmbSPartPrihod;
+        private MetroFramework.Controls.MetroTextBox txtSPartPrihod;
+        private MetroFramework.Controls.MetroLabel lblSPartPrihodCombo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridSPartSpart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridSPartAmount;
+        private MetroFramework.Controls.MetroPanel panSkladTrans;
+        private MetroFramework.Controls.MetroTile tilSkladTransSaveToBase;
+        private MetroFramework.Controls.MetroTile tilSkladTransCloseForm;
+        private MetroFramework.Controls.MetroTile tilSkladTransDeleteFromGrid;
+        private MetroFramework.Controls.MetroTile tilSkladTransAddToGrid;
+        private MetroFramework.Controls.MetroGrid gridSkladTrans;
+        private MetroFramework.Controls.MetroTextBox txtSkladTransAmount;
+        private MetroFramework.Controls.MetroLabel lblSkladTransAmount;
+        private MetroFramework.Controls.MetroComboBox cmbSkladTransSPartName;
+        private MetroFramework.Controls.MetroLabel lblSkladTransSPartName;
+        private MetroFramework.Controls.MetroComboBox cmbSkladTransSkladSelect;
+        private MetroFramework.Controls.MetroLabel lblSkladTransCombo;
+        private MetroFramework.Controls.MetroRadioButton rbSkladTransSPartSelection;
+        private MetroFramework.Controls.MetroRadioButton rbSkladTransPDTSelection;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSkladTransSkladToTrans;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSkladTransSPartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmSkladTransAmount;
+        private MetroFramework.Controls.MetroPanel panRepair;
+        private MetroFramework.Controls.MetroLabel lblRepairPerfWork;
+        private MetroFramework.Controls.MetroTile tilRepairCancel;
+        private MetroFramework.Controls.MetroTile tilRepairAddGrid;
+        private MetroFramework.Controls.MetroTile tilRepairDeleteGrid;
+        private MetroFramework.Controls.MetroTile tilRepairSave;
+        private MetroFramework.Controls.MetroGrid gridRepair;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRepairSPartName;
+        private MetroFramework.Controls.MetroCheckBox chkRepairUsedAddSParts;
+        private MetroFramework.Controls.MetroCheckBox chkRepairFailureConfirmed;
+        private MetroFramework.Controls.MetroTextBox txtRepairIncNumber;
+        private MetroFramework.Controls.MetroTextBox txtRepairPerfWork;
+        private MetroFramework.Controls.MetroTextBox txtRepairFailureName;
+        private MetroFramework.Controls.MetroTextBox txtRepairInvNumber;
+        private MetroFramework.Controls.MetroComboBox cmbRepairEquipment;
+        private MetroFramework.Controls.MetroComboBox cmbRepairSParts;
+        private MetroFramework.Controls.MetroComboBox cmbRepairSC;
+        private MetroFramework.Controls.MetroLabel lblRepairFailureName;
+        private MetroFramework.Controls.MetroLabel lblRepairIncNumber;
+        private MetroFramework.Controls.MetroLabel lblRepairInvNumber;
+        private MetroFramework.Controls.MetroLabel lblRepairEquipment;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroLabel lblRepairSParts;
+        private MetroFramework.Controls.MetroLabel lblRepairSC;
+        private MetroFramework.Controls.MetroTextBox txtRepairDevInOperation;
+        private MetroFramework.Controls.MetroLabel lblRepairDevInOperation;
     }
 }
