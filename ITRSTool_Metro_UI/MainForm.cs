@@ -65,6 +65,7 @@ namespace ITRSTool_Metro_UI
             panChangePass.Visible = false;
             panSPartsPrihod.Visible = false;
             panSkladTrans.Visible = false;
+            panRepair.Visible = false;
         }
 
         private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
@@ -330,6 +331,7 @@ namespace ITRSTool_Metro_UI
         }
 
         // Функция проверки значения int на совпадение
+        // первая цифра не может быть нулем
         public static bool RegexDigital(string StringToRegex)
         {
 
@@ -344,6 +346,7 @@ namespace ITRSTool_Metro_UI
         }
 
         // Функция проверки значения double на совпадение
+        // первая цифра не может быть нулем
         public static bool RegexDouble(string StringToRegex)
         {
             if (Regex.IsMatch(StringToRegex, @"\A[1-9]{1,10}(?:[.,][0-9]{1,2})?\z"))
@@ -356,6 +359,9 @@ namespace ITRSTool_Metro_UI
             }
         }
 
+        //Функия для проверки значения по формату (IT-(1-9)) на совпадение.
+        // Т.е. IT-13333 - верное значение, IT-0111 - не верное значение.
+        // Номер инцидента не может начинаться с нуля, после записи IT-
         public static bool RegexIncNum (string StringToRegex)
         {
             if (Regex.IsMatch(StringToRegex, @"\A[IT,-]{3}[1-9]{1}(?:[0-9]{1,10})?\z"))
@@ -549,23 +555,31 @@ namespace ITRSTool_Metro_UI
 
         private void тСДToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panelOff();
+            panRepair.Location = new Point(20, 87);
+            panRepair.Size = new Size(1064, 438);
+            panRepair.Visible = true;
+
             string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc order by SPartName";
             DataTable RepairSParts = new DataTable();
             RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
             cmbRepairSParts.DataSource = RepairSParts;
             cmbRepairSParts.DisplayMember = "SPartName";
+            cmbRepairSParts.SelectedIndex = -1;
 
             string RepairSCSQL = "select NumSc from ref_sc order by NumSc";
             DataTable RepairSC = new DataTable();
             RepairSC = DB.sql_select_dataset(RepairSCSQL);
             cmbRepairSC.DataSource = RepairSC;
             cmbRepairSC.DisplayMember = "NumSc";
+            cmbRepairSC.SelectedIndex = -1;
 
             string RepairEquipSQL = "select EQName from ref_equipment order by EQName";
             DataTable RepairEquip = new DataTable();
             RepairEquip = DB.sql_select_dataset(RepairEquipSQL);
             cmbRepairEquipment.DataSource = RepairEquip;
             cmbRepairEquipment.DisplayMember = "EQName";
+            cmbRepairEquipment.SelectedIndex = -1;
 
         }
 
@@ -663,14 +677,190 @@ namespace ITRSTool_Metro_UI
 
         private void tilRepairSave_Click(object sender, EventArgs e)
         {
-            if (RegexIncNum(txtRepairIncNumber.Text) == true)
+            try
             {
+                // Для даты работ используем текущюю дату
+                string DateWork = DateTime.Now.ToString("yyyy-MM-dd");
 
+                // Команда SQL для сохранения данных по ремонту с возвратом ID только что сохраненной записи.
+                string RepairMainSql = "insert into tbl_repair_main (sc, NumIncident,Equipment,InvNum,DescFailure,PerfWork,Discrep,DateWork,Fname, Archive,ClaimedFailureConfirmed,UsedAdditionalSParts) Values ((select id from ref_sc where NumSc = '" + cmbRepairSC.Text + "'), '" + txtRepairIncNumber.Text + "',(select id from ref_equipment where EQName = '" + cmbRepairEquipment.Text + "'),'" + txtRepairInvNumber.Text + "','" + txtRepairFailureName.Text + "','" + txtRepairPerfWork.Text + "','" + txtRepairDevInOperation.Text + "', '" + DateWork + "', (select id from tbl_login where Login = '" + lblLoginName.Text + "'), false," + chkRepairFailureConfirmed.Checked.ToString() + "," + chkRepairUsedAddSParts.Checked.ToString() + "); SELECT LAST_INSERT_ID(); SELECT LAST_INSERT_ID()";
+                // Проверяем заполение полей
+                if (cmbRepairSC.Text != "" && cmbRepairEquipment.Text != "" && txtRepairFailureName.Text != "" && txtRepairIncNumber.Text != "" && txtRepairInvNumber.Text != "" && txtRepairPerfWork.Text != "")
+                {
+                    // Проверяем на правильность введения номера инцидента (формат IT-(1-9) (После IT значение не может быть 0))
+                    if (RegexIncNum(txtRepairIncNumber.Text) == true)
+                    {
+                        // Проверяем на правильность введение инвентарного номера (цифры, первая цифра не может быть 0)
+                        if (RegexDigital(txtRepairInvNumber.Text) == true)
+                        {
+                            // Проверяем на наличие существующего в СУБД номера инцидента. Возврат 0 - нет, 1 - совпадение есть.
+                            string RepairIncCheckSql = "select count(*) from tbl_repair_main where NumIncident = '"+txtRepairIncNumber.Text+"'";
+                            int RepairIncCheck = Convert.ToInt32(DB.Sql_Reader(RepairIncCheckSql));
+                            if (RepairIncCheck != 0)
+                            {
+                                MetroFramework.MetroMessageBox.Show(this, "В СУБД уже имеется указанный инцидент! Данные не добавлены!", txtRepairIncNumber.Text.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            
+                            // Если грид не пустой, то вносим данные по запчастям
+                            if (gridRepair.Rows.Count != 0)
+                            {
+                                DataTable dt = new DataTable();
+                                dt = GetDataTableFromDGV(gridRepair);
+
+                                // Проверяем склад на наличие указанных запчестей в гриде.
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    string RepairCountTestSql = "select count(*) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') and Sklad =(select SkladNum from tbl_sklad where EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = '2') and Archive =0 and SkladRemainder>=1";
+                                    int RepairCountTest = Convert.ToInt32(DB.Sql_Reader(RepairCountTestSql));
+                                    if (RepairCountTest == 0)
+                                    {
+                                        MetroFramework.MetroMessageBox.Show(this, "На складе не хватает запчастей для закрытия ремонта. Данные не добавлены!", dt.Rows[i][0].ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+                                
+                                // Вносим запчасти
+                                    for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+
+                                    // Получаем id и кол-во запчастей на складе по минимальной дате (самой старой), складу, действию ремонт (цифра 2), признаку архивности и ограничиваем вывод 1й записью (Limit 1)
+                                    string RepairSPartSql = "SELECT id, SkladRemainder from tbl_prihod where ConsDate = (SELECT MIN(ConsDate) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') AND Archive = 0 AND Sklad = (select SkladNum from tbl_sklad where EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = '2')) AND Archive = 0 limit 1";
+                                    // Создаем экземпляр таблички, заливаем в него данные
+                                    DataTable RepairSPart = new DataTable();
+                                    RepairSPart = DB.sql_select_dataset(RepairSPartSql);
+
+                                    // Создаем строку вставки в табличку данных по использованным запчастям. SpareParts - забираем из таблички выше. 1 - Запчасть одного типа в ремонте всегда используется только одна, выполнение запроса по сохранению данных ремонта и получению сохраненного ID
+                                    string RepairSpartToBaseSql = "insert into tbl_repair_main__spart (SpareParts,Amount,RepairNum) Values (" + RepairSPart.Rows[0][0].ToString() + ",1," + DB.sql_insert_back(RepairMainSql) + ")";
+                                    // Сохраняем строку выше
+                                    DB.sql_insert(RepairSpartToBaseSql);
+
+                                    //Проверяем количество запчастей на складе по указанной выше табличке.
+                                    // Если кол-во больше 1 - то обновляем значение на -1 
+                                    if (Convert.ToInt32(RepairSPart.Rows[0][1]) > 1)
+                                    {
+                                        string RepairSPartInSkladSql = "update tbl_prihod set SkladRemainder = SkladRemainder - 1 WHERE id = " + RepairSPart.Rows[0][0] + "";
+                                        DB.sql_update(RepairSPartInSkladSql);
+                                    }
+                                    // Если кол-во равно 1 - то обновляем значение на -1, Устанавливаем признак архивности, что бы данная запись больше не использовалась в поиске.
+                                    if (Convert.ToInt32(RepairSPart.Rows[0][1]) == 1)
+                                    {
+                                        string RepairSPartInSkladSql = "update tbl_prihod set SkladRemainder = SkladRemainder - 1, Archive = 1 WHERE id = " + RepairSPart.Rows[0][0] + "";
+                                        DB.sql_update(RepairSPartInSkladSql);
+                                    }
+                                }
+
+                                // Сохраняем номер инцидента, дату, тип работ (ремонт) в табличку отправки, для дальнейшего ввода накладной на отправку.
+                                string RepairRecInSendSql = "insert into tbl_sending (NumIncident,DateOfRecord,TypeAction) Values ('"+txtRepairIncNumber.Text+"', '"+DateWork+"',  2)";
+                                DB.sql_insert(RepairRecInSendSql);
+
+                                // Очищаем все поля, заново переподключаем список с запчастями.
+                                cmbRepairSParts.DataSource = null;
+                                string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+
+                                DataTable RepairSPartsnull = new DataTable();
+                                RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
+                                cmbRepairSParts.DataSource = RepairSPartsnull;
+                                cmbRepairSParts.DisplayMember = "SPartName";
+
+                                gridRepair.Rows.Clear();
+                                cmbRepairSC.SelectedIndex = -1;
+                                cmbRepairEquipment.SelectedIndex = -1;
+                                cmbRepairSParts.SelectedIndex = -1;
+                                txtRepairDevInOperation.Text = "";
+                                txtRepairFailureName.Text = "";
+                                txtRepairIncNumber.Text = "";
+                                txtRepairInvNumber.Text = "";
+                                txtRepairPerfWork.Text = "";
+                                chkRepairFailureConfirmed.Checked = false;
+                                chkRepairUsedAddSParts.Checked = false;
+
+                            }
+                            else
+                            // Действие на вариант без использования запчастей.
+                            {
+                                // Сохраняем номер инцидента, дату, тип работ (ремонт) в табличку отправки, для дальнейшего ввода накладной на отправку.
+                                DB.sql_insert(RepairMainSql);
+
+                                string RepairRecInSendSql = "insert into tbl_sending (NumIncident,DateOfRecord,TypeAction) Values ('" + txtRepairIncNumber.Text + "', '" + DateWork + "',  2)";
+                                DB.sql_insert(RepairRecInSendSql);
+
+                                // Очищаем все поля, заново переподключаем список с запчастями.
+                                cmbRepairSParts.DataSource = null;
+                                string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+
+                                DataTable RepairSPartsnull = new DataTable();
+                                RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
+                                cmbRepairSParts.DataSource = RepairSPartsnull;
+                                cmbRepairSParts.DisplayMember = "SPartName";
+                                gridRepair.Rows.Clear();
+                                cmbRepairSC.SelectedIndex = -1;
+                                cmbRepairEquipment.SelectedIndex = -1;
+                                
+                                cmbRepairSParts.SelectedIndex = -1;
+                                txtRepairDevInOperation.Text = "";
+                                txtRepairFailureName.Text = "";
+                                txtRepairIncNumber.Text = "";
+                                txtRepairInvNumber.Text = "";
+                                txtRepairPerfWork.Text = "";
+                                chkRepairFailureConfirmed.Checked = false;
+                                chkRepairUsedAddSParts.Checked = false;
+                            }
+
+
+                        }
+                        else
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "При вводе инвентарного номера допущена ошибка", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtRepairInvNumber.Focus();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "При вводе инцидента допущена ошибка", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtRepairIncNumber.Focus();
+                        return;
+
+                    }
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Не заполнено одно или несколько обязательных полей", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRepairIncNumber.Focus();
+                    return;
+                }
+            }
+              
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+}
+
+        private void tilRepairCancel_Click(object sender, EventArgs e)
+        {
+            if (MetroFramework.MetroMessageBox.Show(this, "При закрытии формы все несохраненные данные удалены. Продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+            {
+                gridRepair.Rows.Clear();
+                cmbRepairSC.DataSource = null;
+                cmbRepairEquipment.DataSource = null;
+                cmbRepairSParts.DataSource = null;
+                txtRepairDevInOperation.Text = "";
+                txtRepairFailureName.Text = "";
+                txtRepairIncNumber.Text = "";
+                txtRepairInvNumber.Text = "";
+                txtRepairPerfWork.Text = "";
+                chkRepairFailureConfirmed.Checked = false;
+                chkRepairUsedAddSParts.Checked = false;
+                panelOff();
             }
             else
             {
-                MessageBox.Show("Обломка");
+                return;
             }
         }
+
+        
     }
 }

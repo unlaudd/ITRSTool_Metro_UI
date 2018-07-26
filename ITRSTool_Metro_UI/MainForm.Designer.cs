@@ -234,7 +234,7 @@
             // тСДToolStripMenuItem
             // 
             this.тСДToolStripMenuItem.Name = "тСДToolStripMenuItem";
-            this.тСДToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
+            this.тСДToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.тСДToolStripMenuItem.Text = "ТСД";
             this.тСДToolStripMenuItem.Click += new System.EventHandler(this.тСДToolStripMenuItem_Click);
             // 
@@ -1346,13 +1346,14 @@
             this.panRepair.HorizontalScrollbarBarColor = true;
             this.panRepair.HorizontalScrollbarHighlightOnWheel = false;
             this.panRepair.HorizontalScrollbarSize = 10;
-            this.panRepair.Location = new System.Drawing.Point(20, 89);
+            this.panRepair.Location = new System.Drawing.Point(20, 87);
             this.panRepair.Name = "panRepair";
             this.panRepair.Size = new System.Drawing.Size(1064, 438);
             this.panRepair.TabIndex = 16;
             this.panRepair.VerticalScrollbarBarColor = true;
             this.panRepair.VerticalScrollbarHighlightOnWheel = false;
             this.panRepair.VerticalScrollbarSize = 10;
+            this.panRepair.Visible = false;
             // 
             // txtRepairDevInOperation
             // 
@@ -1405,6 +1406,7 @@
             this.tilRepairCancel.TileImage = global::ITRSTool_Metro_UI.Properties.Resources.logout256_24927;
             this.tilRepairCancel.UseSelectable = true;
             this.tilRepairCancel.UseTileImage = true;
+            this.tilRepairCancel.Click += new System.EventHandler(this.tilRepairCancel_Click);
             // 
             // tilRepairAddGrid
             // 
