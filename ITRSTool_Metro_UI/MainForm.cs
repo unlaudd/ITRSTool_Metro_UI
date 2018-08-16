@@ -44,6 +44,7 @@ namespace ITRSTool_Metro_UI
 
             datPrihodDelivery.Format = DateTimePickerFormat.Custom;
             datPrihodDelivery.CustomFormat = "yyyy-MM-dd";
+            
             try
             {
                 string SPartsSql = "select SPartName from ref_spart_pdt_etc ORDER BY SPartName";
@@ -51,6 +52,7 @@ namespace ITRSTool_Metro_UI
                 SPartsDataTable = DB.sql_select_dataset(SPartsSql);
                 cmbPrihodSpareParts.DataSource = SPartsDataTable;
                 cmbPrihodSpareParts.DisplayMember = "SPartName";
+                cmbPrihodSpareParts.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -66,6 +68,9 @@ namespace ITRSTool_Metro_UI
             panSPartsPrihod.Visible = false;
             panSkladTrans.Visible = false;
             panRepair.Visible = false;
+
+            // Нужно добавить так же обнуление всех элементов
+
         }
 
         private void сменитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,7 +175,7 @@ namespace ITRSTool_Metro_UI
 
                 }
                 // Делаем проверку на пустые поля
-                if (txtPrihodAmountDelivery.Text != "" && txtPrihodCostDelivery.Text != "" && txtPrihodNumDelivery.Text != "" && txtPrihodSPartsInDelivery.Text != "")
+                if (cmbPrihodSpareParts.Text !="" && txtPrihodAmountDelivery.Text != "" && txtPrihodCostDelivery.Text != "" && txtPrihodNumDelivery.Text != "" && txtPrihodSPartsInDelivery.Text != "")
                 {
                     // Проверяем поле стоимость на правильность ввода. Значение не отрицательное, double
                     if (RegexDouble(txtPrihodCostDelivery.Text.ToString()) == true)
@@ -259,6 +264,8 @@ namespace ITRSTool_Metro_UI
                 txtPrihodCostDelivery.Text = "";
                 txtPrihodNumDelivery.Text = "";
                 txtPrihodSPartsInDelivery.Text = "";
+                cmbPrihodSpareParts.DataSource = null;
+
                 panelOff();
             }
             else
@@ -315,6 +322,7 @@ namespace ITRSTool_Metro_UI
                         txtPrihodCostDelivery.Text = "";
                         txtPrihodNumDelivery.Text = "";
                         txtPrihodSPartsInDelivery.Text = "";
+                        cmbPrihodSpareParts.SelectedIndex = -1;
 
                     }
                 }
@@ -383,6 +391,7 @@ namespace ITRSTool_Metro_UI
                 txtPrihodAmountDelivery.Text = "";
                 txtPrihodCostDelivery.Text = "";
                 txtPrihodSPartsInDelivery.Text = "";
+                cmbPrihodSpareParts.SelectedIndex = -1;
             }
             else
             {
@@ -390,6 +399,7 @@ namespace ITRSTool_Metro_UI
                 txtPrihodAmountDelivery.Text = "";
                 txtPrihodCostDelivery.Text = "";
                 txtPrihodSPartsInDelivery.Text = "";
+                cmbPrihodSpareParts.SelectedIndex = -1;
             }
         }
 
@@ -425,6 +435,7 @@ namespace ITRSTool_Metro_UI
             SPartsPrihod = DB.sql_select_dataset(SPartsPrihodSql);
             cmbSPartPrihod.DataSource = SPartsPrihod;
             cmbSPartPrihod.DisplayMember = "SPartName";
+            cmbSPartPrihod.SelectedIndex = -1;
             cmbSPartPrihod.Focus();
         }
 
@@ -453,7 +464,7 @@ namespace ITRSTool_Metro_UI
                     }
 
                 }
-                if (txtSPartPrihod.Text != "")
+                if (txtSPartPrihod.Text != "" && cmbSPartPrihod.Text !="")
                 {
                     if (RegexDigital(txtSPartPrihod.Text) == true)
                     {
@@ -486,6 +497,7 @@ namespace ITRSTool_Metro_UI
             {
                 gridSPartPrihod.Rows.Clear();
                 txtSPartPrihod.Text = "";
+                cmbSPartPrihod.DataSource = null;
                 panelOff();
             }
             else
@@ -536,6 +548,8 @@ namespace ITRSTool_Metro_UI
         private void пересылкаПоСкладамToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelOff();
+            
+
             panSkladTrans.Location = new Point(20, 87);
             panSkladTrans.Size = new Size(1064, 442);
             panSkladTrans.Visible = true;
@@ -545,12 +559,44 @@ namespace ITRSTool_Metro_UI
             SPartsPrihod = DB.sql_select_dataset(SPartsPrihodSql);
             cmbSPartPrihod.DataSource = SPartsPrihod;
             cmbSPartPrihod.DisplayMember = "SPartName";
+            cmbSPartPrihod.SelectedIndex = -1;
             cmbSPartPrihod.Focus();
+
         }
 
         private void rbSkladTransPDTSelection_CheckedChanged(object sender, EventArgs e)
         {
+            cmbSkladTransSkladSelect.DataSource = null;
+            cmbSkladTransSPartName.DataSource = null;
+            txtSkladTransAmount.Text = "";
+            gridSkladTrans.Rows.Clear();
+            if (rbSkladTransPDTSelection.Checked)
+            {
+                string ProvSql = "select count(*) from tbl_sklad where EngLogin = (Select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction =4 and Archive = false";
+                int Prov = Convert.ToInt32(DB.Sql_Reader(ProvSql));
+                if (Prov != 0)
+                {
+                    string SkladTransPDTSkladSql = "select NumSklad from tbl_sklad inner join ref_sklad on ref_sklad.id = tbl_sklad.SkladNum where NameAction = 4 and Archive = FALSE and EngLogin not in (Select id from tbl_login where Login = '" + lblLoginName.Text + "')";
+                    DataTable SkladTransPDTSklad = new DataTable();
+                    SkladTransPDTSklad = DB.sql_select_dataset(SkladTransPDTSkladSql);
+                    cmbSkladTransSkladSelect.DataSource = SkladTransPDTSklad;
+                    cmbSkladTransSkladSelect.DisplayMember = "NumSklad";
+                    cmbSkladTransSkladSelect.SelectedIndex = -1;
 
+                    string SkladTransPDTSPartSql = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = " + numsklad(4) + " group by SPartName";
+                    DataTable SkladTransPDTSPart = new DataTable();
+                    SkladTransPDTSPart = DB.sql_select_dataset(SkladTransPDTSPartSql);
+                    cmbSkladTransSPartName.DataSource = SkladTransPDTSPart;
+                    cmbSkladTransSPartName.DisplayMember = "SPartName";
+                    cmbSkladTransSPartName.SelectedIndex = -1;
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "У вас нет доступа на отправку запчастей!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+           
         }
 
         private void тСДToolStripMenuItem_Click(object sender, EventArgs e)
@@ -560,7 +606,7 @@ namespace ITRSTool_Metro_UI
             panRepair.Size = new Size(1064, 438);
             panRepair.Visible = true;
 
-            string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc order by SPartName";
+            string RepairSPartsSQL = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = " + numsklad(1) + " And SkladRemainder !=0 And Archive != true group by SPartName";
             DataTable RepairSParts = new DataTable();
             RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
             cmbRepairSParts.DataSource = RepairSParts;
@@ -611,12 +657,13 @@ namespace ITRSTool_Metro_UI
                     }
                 }
                 cmbRepairSParts.DataSource = null;
-                string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc where SPartName not in (" + DataInTableNotIn + ") order by SPartName";
+                string RepairSPartsSQL = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = " + numsklad(1) + " and SPartName not in (" + DataInTableNotIn + ") And SkladRemainder !=0 And Archive != true group by SPartName";
                 
                 DataTable RepairSParts = new DataTable();
                 RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
                 cmbRepairSParts.DataSource = RepairSParts;
                 cmbRepairSParts.DisplayMember = "SPartName";
+                cmbRepairSParts.SelectedIndex = -1;
 
             }
             catch (Exception ex)
@@ -640,12 +687,13 @@ namespace ITRSTool_Metro_UI
                     {
 
                         cmbRepairSParts.DataSource = null;
-                        string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+                        string RepairSPartsSQLnull = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = " + numsklad(1) + " And SkladRemainder !=0 And Archive != true group by SPartName";
 
                         DataTable RepairSPartsnull = new DataTable();
                         RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
                         cmbRepairSParts.DataSource = RepairSPartsnull;
                         cmbRepairSParts.DisplayMember = "SPartName";
+                        cmbRepairSParts.SelectedIndex = -1;
                         return;
                     }
                     for (int i = 0; i < dtCheckTable.Rows.Count; i++)
@@ -660,11 +708,12 @@ namespace ITRSTool_Metro_UI
                         }
                     }
                     cmbRepairSParts.DataSource = null;
-                    string RepairSPartsSQL = "select SPartName from ref_spart_pdt_etc where SPartName not in (" + DataInTableNotIn + ") order by SPartName";
+                    string RepairSPartsSQL = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = "+numsklad(1)+" and SPartName not in (" + DataInTableNotIn + ") And SkladRemainder !=0 And Archive != true group by SPartName";
                     DataTable RepairSParts = new DataTable();
                     RepairSParts = DB.sql_select_dataset(RepairSPartsSQL);
                     cmbRepairSParts.DataSource = RepairSParts;
                     cmbRepairSParts.DisplayMember = "SPartName";
+                    cmbRepairSParts.SelectedIndex = -1;
 
 
                 }
@@ -683,7 +732,7 @@ namespace ITRSTool_Metro_UI
                 string DateWork = DateTime.Now.ToString("yyyy-MM-dd");
 
                 // Команда SQL для сохранения данных по ремонту с возвратом ID только что сохраненной записи.
-                string RepairMainSql = "insert into tbl_repair_main (sc, NumIncident,Equipment,InvNum,DescFailure,PerfWork,Discrep,DateWork,Fname, Archive,ClaimedFailureConfirmed,UsedAdditionalSParts) Values ((select id from ref_sc where NumSc = '" + cmbRepairSC.Text + "'), '" + txtRepairIncNumber.Text + "',(select id from ref_equipment where EQName = '" + cmbRepairEquipment.Text + "'),'" + txtRepairInvNumber.Text + "','" + txtRepairFailureName.Text + "','" + txtRepairPerfWork.Text + "','" + txtRepairDevInOperation.Text + "', '" + DateWork + "', (select id from tbl_login where Login = '" + lblLoginName.Text + "'), false," + chkRepairFailureConfirmed.Checked.ToString() + "," + chkRepairUsedAddSParts.Checked.ToString() + "); SELECT LAST_INSERT_ID(); SELECT LAST_INSERT_ID()";
+                string RepairMainSql = "insert into tbl_repair_main (sc, NumIncident,Equipment,InvNum,DescFailure,PerfWork,Discrep,DateWork,Fname, Archive,ClaimedFailureConfirmed,UsedAdditionalSParts) Values ((select id from ref_sc where NumSc = '" + cmbRepairSC.Text + "'), '" + txtRepairIncNumber.Text + "',(select id from ref_equipment where EQName = '" + cmbRepairEquipment.Text + "'),'" + txtRepairInvNumber.Text + "','" + txtRepairFailureName.Text + "','" + txtRepairPerfWork.Text + "','" + txtRepairDevInOperation.Text + "', '" + DateWork + "', (select id from tbl_login where Login = '" + lblLoginName.Text + "'), false," + chkRepairFailureConfirmed.Checked.ToString() + "," + chkRepairUsedAddSParts.Checked.ToString() + "); SELECT LAST_INSERT_ID()";
                 // Проверяем заполение полей
                 if (cmbRepairSC.Text != "" && cmbRepairEquipment.Text != "" && txtRepairFailureName.Text != "" && txtRepairIncNumber.Text != "" && txtRepairInvNumber.Text != "" && txtRepairPerfWork.Text != "")
                 {
@@ -711,7 +760,7 @@ namespace ITRSTool_Metro_UI
                                 // Проверяем склад на наличие указанных запчестей в гриде.
                                 for (int i = 0; i < dt.Rows.Count; i++)
                                 {
-                                    string RepairCountTestSql = "select count(*) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') and Sklad =(select SkladNum from tbl_sklad where EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = '2') and Archive =0 and SkladRemainder>=1";
+                                    string RepairCountTestSql = "select count(*) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') and Sklad =" + numsklad(2) + " and Archive =0 and SkladRemainder>=1";
                                     int RepairCountTest = Convert.ToInt32(DB.Sql_Reader(RepairCountTestSql));
                                     if (RepairCountTest == 0)
                                     {
@@ -725,7 +774,7 @@ namespace ITRSTool_Metro_UI
                                 {
 
                                     // Получаем id и кол-во запчастей на складе по минимальной дате (самой старой), складу, действию ремонт (цифра 2), признаку архивности и ограничиваем вывод 1й записью (Limit 1)
-                                    string RepairSPartSql = "SELECT id, SkladRemainder from tbl_prihod where ConsDate = (SELECT MIN(ConsDate) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') AND Archive = 0 AND Sklad = (select SkladNum from tbl_sklad where EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = '2')) AND Archive = 0 limit 1";
+                                    string RepairSPartSql = "SELECT id, SkladRemainder from tbl_prihod where ConsDate = (SELECT MIN(ConsDate) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + dt.Rows[i][0] + "') AND Archive = 0 AND Sklad =  " + numsklad(2) + ") AND Archive = 0 limit 1";
                                     // Создаем экземпляр таблички, заливаем в него данные
                                     DataTable RepairSPart = new DataTable();
                                     RepairSPart = DB.sql_select_dataset(RepairSPartSql);
@@ -756,12 +805,13 @@ namespace ITRSTool_Metro_UI
 
                                 // Очищаем все поля, заново переподключаем список с запчастями.
                                 cmbRepairSParts.DataSource = null;
-                                string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+                                string RepairSPartsSQLnull = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = " + numsklad(2) + " And SkladRemainder !=0 And Archive != true group by SPartName";
 
                                 DataTable RepairSPartsnull = new DataTable();
                                 RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
                                 cmbRepairSParts.DataSource = RepairSPartsnull;
                                 cmbRepairSParts.DisplayMember = "SPartName";
+                                
 
                                 gridRepair.Rows.Clear();
                                 cmbRepairSC.SelectedIndex = -1;
@@ -787,7 +837,7 @@ namespace ITRSTool_Metro_UI
 
                                 // Очищаем все поля, заново переподключаем список с запчастями.
                                 cmbRepairSParts.DataSource = null;
-                                string RepairSPartsSQLnull = "select SPartName from ref_spart_pdt_etc order by SPartName";
+                                string RepairSPartsSQLnull = "select SPartName from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart where sklad = "+numsklad(2)+ " And SkladRemainder !=0 And Archive != true group by SPartName";
 
                                 DataTable RepairSPartsnull = new DataTable();
                                 RepairSPartsnull = DB.sql_select_dataset(RepairSPartsSQLnull);
@@ -860,7 +910,351 @@ namespace ITRSTool_Metro_UI
                 return;
             }
         }
+        public string numsklad(int NameAction)
+        {
+            string sql = "select SkladNum from tbl_sklad where EngLogin = (select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction = "+ NameAction + " and Archive = false";
+            string req = DB.Sql_Reader(sql);
+            return req;
 
-        
+        }
+
+        private void rbSkladTransSPartSelection_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbSkladTransSkladSelect.DataSource = null;
+            cmbSkladTransSPartName.DataSource = null;
+            txtSkladTransAmount.Text = "";
+            gridSkladTrans.Rows.Clear();
+            if (rbSkladTransSPartSelection.Checked)
+            {
+                string ProvSql = "select count(*) from tbl_sklad where EngLogin = (Select id from tbl_login where Login = '" + lblLoginName.Text + "') and NameAction =5 and Archive = false";
+                int Prov = Convert.ToInt32(DB.Sql_Reader(ProvSql));
+                if (Prov != 0)
+                {
+                    string SkladTransPDTSkladSql = "select NumSklad from tbl_sklad inner join ref_sklad on ref_sklad.id = tbl_sklad.SkladNum where NameAction = 5 and Archive = FALSE and EngLogin not in (Select id from tbl_login where Login = '" + lblLoginName.Text + "')";
+                    DataTable SkladTransPDTSklad = new DataTable();
+                    SkladTransPDTSklad = DB.sql_select_dataset(SkladTransPDTSkladSql);
+                    cmbSkladTransSkladSelect.DataSource = SkladTransPDTSklad;
+                    cmbSkladTransSkladSelect.DisplayMember = "NumSklad";
+                    cmbSkladTransSkladSelect.SelectedIndex = -1;
+
+                    string SkladTransPDTSPartSql = "select ref_spart_cable.SPartName from tbl_spart_sklad inner join ref_spart_cable on ref_spart_cable.id = tbl_spart_sklad.SPartName  where sklad = " + numsklad(5)+" and Amount !=0 group by SPartName";
+                    DataTable SkladTransPDTSPart = new DataTable();
+                    SkladTransPDTSPart = DB.sql_select_dataset(SkladTransPDTSPartSql);
+                    cmbSkladTransSPartName.DataSource = SkladTransPDTSPart;
+                    cmbSkladTransSPartName.DisplayMember = "SPartName";
+                    cmbSkladTransSPartName.SelectedIndex = -1;
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "У вас нет доступа на отправку запчастей!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        private void tilSkladTransCloseForm_Click(object sender, EventArgs e)
+        {
+            if (MetroFramework.MetroMessageBox.Show(this, "При закрытии формы все несохраненные данные удалены. Продолжить?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+            {
+                gridSkladTrans.Rows.Clear();
+                cmbSkladTransSkladSelect.DataSource = null;
+                cmbSkladTransSPartName.DataSource = null;
+                txtSkladTransAmount.Text = "";
+                panelOff();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void tilSkladTransDeleteFromGrid_Click(object sender, EventArgs e)
+        {
+            if (gridSkladTrans.CurrentRow != null)
+            {
+                gridSkladTrans.Rows.Remove(gridSkladTrans.CurrentRow);
+            }
+        }
+
+        private void tilSkladTransAddToGrid_Click(object sender, EventArgs e)
+        {
+            DataTable dtCheckTable = new DataTable();
+            dtCheckTable = GetDataTableFromDGV(gridSkladTrans);
+            try
+            {
+                // Проверяем на совпадение введенные данные с табличкой
+                for (int i = 0; i < dtCheckTable.Rows.Count; i++)
+                {
+                    if (dtCheckTable.Rows[i][0].ToString() == cmbSkladTransSkladSelect.Text && dtCheckTable.Rows[i][1].ToString() == cmbSkladTransSPartName.Text)
+                    {
+
+                        MetroFramework.MetroMessageBox.Show(this, "Запись уже существует в таблице. Проверьте ввод данных", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                }
+                if (cmbSkladTransSkladSelect.Text != "" && cmbSkladTransSPartName.Text != "" && txtSkladTransAmount.Text !="")
+                {
+                    if (RegexDigital(txtSkladTransAmount.Text) == true)
+                    {
+                        string[] strokaEshe = { cmbSkladTransSkladSelect.Text, cmbSkladTransSPartName.Text, txtSkladTransAmount.Text };
+                        addGridParam(strokaEshe, gridSkladTrans);
+                        cmbSkladTransSkladSelect.SelectedIndex = -1;
+                        cmbSkladTransSPartName.SelectedIndex = -1;
+                        txtSkladTransAmount.Text = "";
+                    }
+                    else
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "Не верно заполнено поле количество. Данные не добавлены", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Не заполнены необходимые поля", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void tilSkladTransSaveToBase_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt = GetDataTableFromDGV(gridSkladTrans);
+            string CheckTransSql = "";
+            string InsOrUpdateSql = "";
+            string InsSql = "";
+            string UpdSql = "";
+            string MySkladUpdate = "";
+            int InsOrUpdate;
+
+            // Расходники PDT
+            if (rbSkladTransPDTSelection.Checked)
+            {
+                
+                CheckTransSql = "select z, x -sum(p) from(SELECT ref_spart_pdt_etc.SPartName As z, " + dt.Rows[0][2] + " AS p, (select SUM(SkladRemainder) from tbl_prihod where SparePart = (SELECT id from ref_spart_pdt_etc WHERE SPartName = '" + dt.Rows[0][1] + "') and Sklad = "+numsklad(4)+"  and Archive = 0) As x from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart WHERE ref_spart_pdt_etc.SPartName = '" + dt.Rows[0][1] + "' and Sklad = " + numsklad(4) + "  and Archive = 0 group by z";
+
+                for (int i = 1; i < dt.Rows.Count; i++)
+                {
+                    CheckTransSql = CheckTransSql + " union all SELECT ref_spart_pdt_etc.SPartName As z, " + dt.Rows[0][2] + " AS p, (select SUM(SkladRemainder) from tbl_prihod where SparePart = (SELECT id from ref_spart_pdt_etc WHERE SPartName = '" + dt.Rows[0][1] + "') and Sklad = " + numsklad(4) + "  and Archive = 0) As x from tbl_prihod inner join ref_spart_pdt_etc on ref_spart_pdt_etc.id = tbl_prihod.SparePart WHERE ref_spart_pdt_etc.SPartName = '" + dt.Rows[0][1] + "' and Sklad = " + numsklad(4) + "  and Archive = 0 group by z";
+                }
+                CheckTransSql = CheckTransSql + ") t group by x";
+                DataTable prov = new DataTable();
+                prov = DB.sql_select_dataset(CheckTransSql);
+                for (int k = 0; k < prov.Rows.Count; k++)
+                {
+
+                    if (Convert.ToInt32(prov.Rows[k][1]) < 0)
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "На складе не хватает необходимого количества запчастей. Данные не добавлены!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    DataTable SkladSearch = new DataTable();
+                    SkladSearch = updateotpr(dt.Rows[i][1].ToString(), Convert.ToInt32(numsklad(4)), Convert.ToInt32(dt.Rows[i][2]));
+                    DataTable StrFromPrihod = new DataTable();
+                    for (int z = 0; z < SkladSearch.Rows.Count; z++)
+                    {
+                        string StrFromPrihodSql = "Select * from tbl_prihod where id = "+SkladSearch.Rows[z][0]+"";
+                        
+                        StrFromPrihod = DB.sql_select_dataset(StrFromPrihodSql);
+                        for (int y = 0; y < StrFromPrihod.Rows.Count; y++)
+                        {
+                            DateTime DateToBase = new DateTime();
+                            DateToBase = Convert.ToDateTime(StrFromPrihod.Rows[y][3]);
+                            
+                            InsOrUpdateSql = "SELECT COUNT(*) from tbl_prihod where SparePart = " + StrFromPrihod.Rows[y][1] + " and tbl_prihod.`СonsNumber` = '" + StrFromPrihod.Rows[y][2] + "' and ConsDate = '" + DateToBase.ToString("yyyy-MM-dd") + "' and Archive != true and SkladRemainder !=0 And sklad = (Select id from ref_sklad where NumSklad = '" + dt.Rows[i][0] + "')";
+
+                            InsOrUpdate = Convert.ToInt32(DB.Sql_Reader(InsOrUpdateSql));
+
+                            string SkladToSendSql = "Select id from ref_sklad where NumSklad = " + dt.Rows[i][0] + "";
+                            string SkladToSend = DB.Sql_Reader(SkladToSendSql);
+                            string RegConv = Regex.Replace(StrFromPrihod.Rows[y][6].ToString(), ",", ".");
+                            if (InsOrUpdate == 0)
+                            {
+
+                                InsSql = "INSERT into tbl_prihod (SparePart, tbl_prihod.`СonsNumber`, ConsDate, NameInCons, Amount, UnitCost, Sklad, Archive, SkladRemainder) values (" + StrFromPrihod.Rows[y][1] + ", '" + StrFromPrihod.Rows[y][2] + "' , '" + Regex.Replace(DateToBase.ToString("yyyy-MM-dd"), " ", "") + "', '" + StrFromPrihod.Rows[y][4] + "', " + StrFromPrihod.Rows[y][5] + ", " + RegConv + ", " + SkladToSend + ", false, " + SkladSearch.Rows[z][1] + ")";
+                                DB.sql_insert(InsSql);
+
+
+                            }
+                            else
+                            {
+                                UpdSql = "update tbl_prihod set SkladRemainder = SkladRemainder + " + StrFromPrihod.Rows[y][5] + " where SparePart = " + StrFromPrihod.Rows[y][1] + " and tbl_prihod.`СonsNumber` = '" + StrFromPrihod.Rows[y][2] + "' And ConsDate ='" + Regex.Replace(DateToBase.ToString("yyyy-MM-dd"), " ", "") + "' and sklad = " + SkladToSend + "";
+                                DB.sql_update(UpdSql);
+                            }
+                        }
+
+                    }
+                    
+                }
+
+            }
+            //Запчасти для пайки
+            else
+            {
+                CheckTransSql = "select x, z - SUM(p) from(select SPartName As x, '"+dt.Rows[0][2]+"' As p, Amount AS z from tbl_spart_sklad where SPartName = (select id from ref_spart_cable where SPartName = '"+dt.Rows[0][1]+"') and sklad = "+numsklad(5)+"";
+                for (int i = 1; i < dt.Rows.Count; i++)
+                {
+                    CheckTransSql = CheckTransSql + " union all select SPartName As x, '" + dt.Rows[i][2] + "' As p, Amount AS z from tbl_spart_sklad where SPartName = (select id from ref_spart_cable where SPartName = '" + dt.Rows[i][1] + "') and sklad = "+numsklad(5)+"";
+                }
+                CheckTransSql = CheckTransSql + ") t group by z";
+                DataTable prov = new DataTable();
+                
+                prov = DB.sql_select_dataset(CheckTransSql);
+                
+                for (int k = 0; k < prov.Rows.Count; k++)
+                {
+
+                    if (Convert.ToInt32(prov.Rows[k][1]) < 0)
+                    {
+                        MetroFramework.MetroMessageBox.Show(this, "На складе не хватает необходимого количества запчастей. Данные не добавлены!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                }
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    InsOrUpdateSql = "SELECT count(*) from tbl_spart_sklad where SPartName = (select id from ref_spart_cable where SPartName = '" + dt.Rows[i][1] + "') And sklad = (Select id from ref_sklad where NumSklad = " + dt.Rows[i][0] + ")";
+                    InsOrUpdate = Convert.ToInt32(DB.Sql_Reader(InsOrUpdateSql));
+                    if (InsOrUpdate == 0)
+                    {
+                        InsSql = "insert into tbl_spart_sklad (SPartName, Amount, Sklad) Values ((select id from ref_spart_cable where SPartName = '" + dt.Rows[i][1] + "'), " + dt.Rows[i][2] + ", (Select id from ref_sklad where NumSklad =" + dt.Rows[i][0] + "))";
+                        DB.sql_insert(InsSql);
+
+                    }
+                    else
+                    {
+                        UpdSql = "update tbl_spart_sklad set Amount = Amount + " + dt.Rows[i][2] + " where sklad = (Select id from ref_sklad where NumSklad = " + dt.Rows[i][0] + ")";
+                        DB.sql_update(UpdSql);
+
+                    }
+                    MySkladUpdate = "update tbl_spart_sklad set Amount = Amount - " + dt.Rows[i][2] + " where sklad = " + numsklad(5) + "";
+                    DB.sql_update(MySkladUpdate);
+
+
+                }
+
+            }
+            gridSkladTrans.Rows.Clear();
+        }
+
+        static public DataTable updateotpr(string SparePart, int Sklad, int AmountBase)
+
+        {
+            int col_int = 0;
+            string id_base = "";
+            string cmd_upd = "";
+            DataTable SkladTransData = new DataTable();
+            
+
+
+
+
+            SkladTransData.Columns.AddRange(
+new DataColumn[] {
+new DataColumn("id", typeof(int)),
+new DataColumn("Kolvo", typeof(int)),
+}
+);
+            string sql = ("SELECT id, SkladRemainder from tbl_prihod where ConsDate = (SELECT MIN(ConsDate) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + SparePart + "') AND Archive = 0 AND Sklad =  " + Sklad + ") AND Archive = 0 limit 1");
+
+            DataTable dt = new DataTable();
+            dt = DB.sql_select_dataset(sql);
+            string col = dt.Rows[0][1].ToString();
+            id_base = dt.Rows[0][0].ToString();
+            int col_baze = Convert.ToInt32(col);
+            col_int = col_baze - AmountBase;
+
+            do
+            {
+                if (col_int == 0)
+                {
+
+                    {
+
+                        cmd_upd = "UPDATE tbl_prihod SET SkladRemainder = 0 , Archive = 1 WHERE id = '" + id_base + "'";
+                        DB.sql_update(cmd_upd);
+                        
+                        SkladTransData.Rows.Add(id_base, AmountBase);
+                        
+                        col_int = 0;
+                        
+
+                    }
+                }
+                if (col_int > 0)
+                {
+
+                    {
+
+                        cmd_upd = "UPDATE tbl_prihod SET SkladRemainder = '" + col_int + "' WHERE id = '" + id_base + "'";
+                        DB.sql_update(cmd_upd);
+                        SkladTransData.Rows.Add(id_base, AmountBase);
+                        
+                        col_int = 0;
+                        
+                    }
+                }
+                if (col_int < 0)
+                {
+
+                    {
+
+
+                        cmd_upd = "UPDATE tbl_prihod SET SkladRemainder = 0 , Archive = 1 WHERE id = '" + id_base + "'";
+                        DB.sql_update(cmd_upd);
+                        SkladTransData.Rows.Add(id_base, col);
+                        int col_int1 = col_int * (-1);
+
+
+                        sql = "SELECT id, SkladRemainder from tbl_prihod where ConsDate = (SELECT MIN(ConsDate) from tbl_prihod where SparePart = (select id from ref_spart_pdt_etc where SPartName = '" + SparePart + "') AND Archive = 0 AND Sklad =  " + Sklad + ") AND Archive = 0 limit 1";
+                        //DataTable dt1 = new DataTable();
+                        dt = null;
+                        dt = DB.sql_select_dataset(sql);
+
+
+                        col = dt.Rows[0][1].ToString();
+                        AmountBase = Convert.ToInt32(col_int1);
+                        id_base = null;
+                        id_base = dt.Rows[0][0].ToString();
+                        int col_baze1 = Convert.ToInt32(col);
+
+                        col_int = col_baze1 - col_int1;
+                        
+
+                        if (col_int == 0)
+                        {
+
+                            cmd_upd = "UPDATE tbl_prihod SET SkladRemainder = 0 , Archive = 1 WHERE id= '" + id_base + "'";
+                            DB.sql_update(cmd_upd);
+                            SkladTransData.Rows.Add(id_base, AmountBase);
+                            
+                            col_int = 0;
+                            
+
+                        }
+                    }
+
+                }
+            }
+
+            while (col_int != 0);
+            return SkladTransData;
+
+        }
+
+
+
+
     }
+
 }

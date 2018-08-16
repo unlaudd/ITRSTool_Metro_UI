@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppConfig));
             this.panBaseConnector = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.tileCheckBaseConnect = new MetroFramework.Controls.MetroTile();
             this.btnClear = new MetroFramework.Controls.MetroButton();
             this.btnSave = new MetroFramework.Controls.MetroButton();
@@ -41,7 +43,6 @@
             this.tileRecoveryBase = new MetroFramework.Controls.MetroTile();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.tileBackupBase = new MetroFramework.Controls.MetroTile();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panBaseConnector.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,16 @@
             this.panBaseConnector.VerticalScrollbarHighlightOnWheel = false;
             this.panBaseConnector.VerticalScrollbarSize = 10;
             this.panBaseConnector.Visible = false;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.Location = new System.Drawing.Point(16, 14);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(453, 40);
+            this.metroLabel1.TabIndex = 7;
+            this.metroLabel1.Text = "При наличии файла options.ini, поля ниже заполняются автоматически при загрузке ф" +
+    "ормы";
+            this.metroLabel1.WrapToLine = true;
             // 
             // tileCheckBaseConnect
             // 
@@ -328,16 +339,6 @@
             this.tileBackupBase.UseSelectable = true;
             this.tileBackupBase.Click += new System.EventHandler(this.tileBackupBase_Click);
             // 
-            // metroLabel1
-            // 
-            this.metroLabel1.Location = new System.Drawing.Point(16, 14);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(453, 40);
-            this.metroLabel1.TabIndex = 7;
-            this.metroLabel1.Text = "При наличии файла options.ini, поля ниже заполняются автоматически при загрузке ф" +
-    "ормы";
-            this.metroLabel1.WrapToLine = true;
-            // 
             // AppConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +346,7 @@
             this.ClientSize = new System.Drawing.Size(674, 320);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.panBaseConnector);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AppConfig";
             this.Resizable = false;

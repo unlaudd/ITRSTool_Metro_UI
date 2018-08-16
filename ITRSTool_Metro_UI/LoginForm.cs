@@ -134,6 +134,7 @@ namespace ITRSTool_Metro_UI
             while ((line = sr.ReadLine()) != null)
             {
                 txtLogin.Text = line;
+                
             }
             sr.Close();
             }
