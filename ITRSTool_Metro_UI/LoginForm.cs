@@ -51,7 +51,7 @@ namespace ITRSTool_Metro_UI
                 Hide();
                 AppConfig appconfig = new AppConfig();
                 appconfig.Show();
-                this.Close();
+            // this.Close();
             }
             // Коннектимся к СУБД, используя класс.
 
@@ -138,7 +138,7 @@ namespace ITRSTool_Metro_UI
             }
             sr.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                     txtLogin.Text = "";
             }
